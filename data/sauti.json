@@ -1,0 +1,28 @@
+{
+  "version": 1,
+  "notes": "Voice lines for ElevenLabs. Generate each line, download it as MP3, name it exactly '<id>.mp3' and put it in app/audio/. Then run 'python3 app/build.py'. Lines without a file are simply skipped by the app. Methali and word lines are generated from data/*.json by app/tools/make_sauti.py into data/sauti.csv.",
+  "lines": [
+    { "id": "karibu", "text": "Karibu Chemsha Bongo!", "en": "Welcome to Chemsha Bongo!", "where": "Home, first visit after sign-up" },
+    { "id": "tuanze", "text": "Haya, tuanze!", "en": "Okay, let's start!", "where": "Start of every game" },
+    { "id": "sahihi_1", "text": "Sahihi!", "en": "Correct!", "where": "Right answer" },
+    { "id": "sahihi_2", "text": "Safi sana!", "en": "Very good!", "where": "Right answer" },
+    { "id": "sahihi_3", "text": "Hongera, umepatia!", "en": "Well done, you got it!", "where": "Right answer" },
+    { "id": "moto", "text": "Moto! Endelea hivyo!", "en": "On fire! Keep it up!", "where": "Three or more right in a row" },
+    { "id": "kosa_1", "text": "Hapana, si hilo.", "en": "No, not that one.", "where": "Wrong answer" },
+    { "id": "kosa_2", "text": "Pole, jaribu tena.", "en": "Sorry, try again.", "where": "Wrong answer" },
+    { "id": "muda", "text": "Muda umekwisha!", "en": "Time's up!", "where": "Timer runs out" },
+    { "id": "sekunde_kumi", "text": "Sekunde kumi zimebaki!", "en": "Ten seconds left!", "where": "Heads Up and Chora Tuone, 10 seconds left" },
+    { "id": "tatu", "text": "Tatu!", "en": "Three!", "where": "Heads Up countdown" },
+    { "id": "mbili", "text": "Mbili!", "en": "Two!", "where": "Heads Up countdown" },
+    { "id": "moja", "text": "Moja!", "en": "One!", "where": "Heads Up countdown" },
+    { "id": "anza", "text": "Anza!", "en": "Go!", "where": "Heads Up countdown" },
+    { "id": "pita", "text": "Pita!", "en": "Pass!", "where": "Heads Up pass" },
+    { "id": "chora", "text": "Chora sasa!", "en": "Draw now!", "where": "Chora Tuone, drawing starts" },
+    { "id": "wamepata", "text": "Wamepata!", "en": "They got it!", "where": "Chora Tuone, team guesses right" },
+    { "id": "mmea_umekauka", "text": "Ee! Mmea umekauka!", "en": "Oh no! The plant has dried up!", "where": "Mazao, out of water drops" },
+    { "id": "matone_yameisha", "text": "Ee! Matone yameisha!", "en": "Oh no! The water drops are gone!", "where": "Wanyama, out of water drops" },
+    { "id": "ushindi", "text": "Hongera! Umeshinda!", "en": "Congratulations! You won!", "where": "Results, win" },
+    { "id": "jaribu_tena", "text": "Usikate tamaa. Kila mwanzo ni mzito!", "en": "Don't give up. Every beginning is hard!", "where": "Results, loss" },
+    { "id": "mfululizo", "text": "Safi! Umeongeza mfululizo wako wa siku!", "en": "Nice! You added to your daily streak!", "where": "Results, daily streak goes up" }
+  ]
+}

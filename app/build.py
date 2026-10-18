@@ -17,7 +17,10 @@ def data(name):
 
 
 css = (SRC / "style.css").read_text(encoding="utf-8")
+audio_dir = ROOT / "audio"
+audio_ids = sorted(f.stem for f in audio_dir.glob("*.mp3")) if audio_dir.exists() else []
 js = "\n".join([
+    f"const AUDIO_FILES={json.dumps(audio_ids)};",
     f"const METHALI={data('methali.json')};",
     f"const GEO={data('jiografia.json')};",
     f"const CHORA={data('chora.json')};",

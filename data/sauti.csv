@@ -1,0 +1,67 @@
+﻿group,file_name,swahili_text,english,used_in
+A,karibu.mp3,Karibu Chemsha Bongo!,Welcome to Chemsha Bongo!,"Home, first visit after sign-up"
+A,tuanze.mp3,"Haya, tuanze!","Okay, let's start!",Start of every game
+A,sahihi_1.mp3,Sahihi!,Correct!,Right answer
+A,sahihi_2.mp3,Safi sana!,Very good!,Right answer
+A,sahihi_3.mp3,"Hongera, umepatia!","Well done, you got it!",Right answer
+A,moto.mp3,Moto! Endelea hivyo!,On fire! Keep it up!,Three or more right in a row
+A,kosa_1.mp3,"Hapana, si hilo.","No, not that one.",Wrong answer
+A,kosa_2.mp3,"Pole, jaribu tena.","Sorry, try again.",Wrong answer
+A,muda.mp3,Muda umekwisha!,Time's up!,Timer runs out
+A,sekunde_kumi.mp3,Sekunde kumi zimebaki!,Ten seconds left!,"Heads Up and Chora Tuone, 10 seconds left"
+A,tatu.mp3,Tatu!,Three!,Heads Up countdown
+A,mbili.mp3,Mbili!,Two!,Heads Up countdown
+A,moja.mp3,Moja!,One!,Heads Up countdown
+A,anza.mp3,Anza!,Go!,Heads Up countdown
+A,pita.mp3,Pita!,Pass!,Heads Up pass
+A,chora.mp3,Chora sasa!,Draw now!,"Chora Tuone, drawing starts"
+A,wamepata.mp3,Wamepata!,They got it!,"Chora Tuone, team guesses right"
+A,mmea_umekauka.mp3,Ee! Mmea umekauka!,Oh no! The plant has dried up!,"Mazao, out of water drops"
+A,matone_yameisha.mp3,Ee! Matone yameisha!,Oh no! The water drops are gone!,"Wanyama, out of water drops"
+A,ushindi.mp3,Hongera! Umeshinda!,Congratulations! You won!,"Results, win"
+A,jaribu_tena.mp3,Usikate tamaa. Kila mwanzo ni mzito!,Don't give up. Every beginning is hard!,"Results, loss"
+A,mfululizo.mp3,Safi! Umeongeza mfululizo wako wa siku!,Nice! You added to your daily streak!,"Results, daily streak goes up"
+B,methali_399.mp3,Daima mbele.,Always forward.,"Malizia Methali, 'Sikiliza' after answering"
+B,methali_408.mp3,Jaribu uone.,Try and you will see.,"Malizia Methali, 'Sikiliza' after answering"
+B,methali_422.mp3,Kila mwanzo ni mzito.,Every beginning is heavy.,"Malizia Methali, 'Sikiliza' after answering"
+B,methali_389.mp3,Anayejitahidi hufaidi.,"Whoever strives, benefits.","Malizia Methali, 'Sikiliza' after answering"
+B,methali_425.mp3,Kila ufanyacho kifanye vema.,"Whatever you do, do it well.","Malizia Methali, 'Sikiliza' after answering"
+B,methali_473.mp3,Tumaini hadi mwisho.,Hope until the end.,"Malizia Methali, 'Sikiliza' after answering"
+B,methali_392.mp3,Atakaye kufuga ng'ombe aanze na kuku.,Whoever wants to keep cattle should start with chickens.,"Malizia Methali, 'Sikiliza' after answering"
+B,methali_448.mp3,Mtaka cha mvunguni sharti ainame.,Whoever wants what is under the bed must bend down.,"Malizia Methali, 'Sikiliza' after answering"
+B,methali_449.mp3,Mtaka kilicho mbali hukitembelea.,Whoever wants what is far away walks to it.,"Malizia Methali, 'Sikiliza' after answering"
+B,methali_406.mp3,Huwezi kujua ukiwezacho mpaka umejaribu.,You can't know what you can do until you've tried.,"Malizia Methali, 'Sikiliza' after answering"
+B,methali_423.mp3,Kila ndege huruka kwa bawa lake.,Every bird flies with its own wing.,"Malizia Methali, 'Sikiliza' after answering"
+B,methali_444.mp3,Msasi haogopi miiba.,A hunter isn't afraid of thorns.,"Malizia Methali, 'Sikiliza' after answering"
+B,methali_446.mp3,Mshoni hachagui nguo.,A tailor doesn't choose the cloth.,"Malizia Methali, 'Sikiliza' after answering"
+B,methali_431.mp3,Kulenga si kufuma.,Aiming is not hitting.,"Malizia Methali, 'Sikiliza' after answering"
+B,methali_395.mp3,Bahari haivukwi kwa kuogelea.,The ocean isn't crossed by swimming.,"Malizia Methali, 'Sikiliza' after answering"
+B,methali_396.mp3,"Banda likikushinda, jenga kibanda.","If a hut is too much for you, build a shack.","Malizia Methali, 'Sikiliza' after answering"
+B,methali_483.mp3,Unyoshe miguu kadiri ya kitanda.,Stretch your legs to the length of your bed.,"Malizia Methali, 'Sikiliza' after answering"
+B,methali_458.mp3,"Mwanzo mateso, mwisho furaha.","Hardship at the start, joy at the end.","Malizia Methali, 'Sikiliza' after answering"
+B,methali_490.mp3,Usipokubali kutia mguu majini hutavuka kijito.,"If you won't put your foot in the water, you won't cross the stream.","Malizia Methali, 'Sikiliza' after answering"
+B,methali_438.mp3,"Mfupa uliomshinda fisi, mbwa atauweza?","The bone that beat the hyena, can a dog manage it?","Malizia Methali, 'Sikiliza' after answering"
+B,methali_445.mp3,Mshale usio nyoya hauendi mbali.,An arrow without feathers won't go far.,"Malizia Methali, 'Sikiliza' after answering"
+B,methali_415.mp3,Kelele za chura hazimkatazi ng'ombe kunywa maji.,The frog's noise doesn't stop the cow from drinking.,"Malizia Methali, 'Sikiliza' after answering"
+B,methali_443.mp3,"Msafiri mbali, hupita jabali.",The far traveller passes the mountain.,"Malizia Methali, 'Sikiliza' after answering"
+B,methali_480.mp3,"Ukioka samaki, huwezi kuondoa manyoya ya kuku.","While baking fish, you can't pluck a chicken.","Malizia Methali, 'Sikiliza' after answering"
+C,zao_mahindi.mp3,Mahindi.,maize,"Mazao, 'Sikiliza' after the round"
+C,zao_ndizi.mp3,Ndizi.,banana,"Mazao, 'Sikiliza' after the round"
+C,zao_nazi.mp3,Nazi.,coconut,"Mazao, 'Sikiliza' after the round"
+C,zao_chai.mp3,Chai.,tea,"Mazao, 'Sikiliza' after the round"
+C,zao_kahawa.mp3,Kahawa.,coffee,"Mazao, 'Sikiliza' after the round"
+C,zao_pamba.mp3,Pamba.,cotton,"Mazao, 'Sikiliza' after the round"
+C,zao_mpunga.mp3,Mpunga.,rice (plant),"Mazao, 'Sikiliza' after the round"
+C,zao_muhogo.mp3,Muhogo.,cassava,"Mazao, 'Sikiliza' after the round"
+C,zao_alizeti.mp3,Alizeti.,sunflower,"Mazao, 'Sikiliza' after the round"
+C,zao_korosho.mp3,Korosho.,cashew,"Mazao, 'Sikiliza' after the round"
+C,zao_karafuu.mp3,Karafuu.,cloves,"Mazao, 'Sikiliza' after the round"
+C,zao_mkonge.mp3,Mkonge.,sisal,"Mazao, 'Sikiliza' after the round"
+C,zao_fenesi.mp3,Fenesi.,jackfruit,"Mazao, 'Sikiliza' after the round"
+C,mnyama_simba.mp3,Simba.,lion,"Wanyama, 'Sikiliza' after the round"
+C,mnyama_twiga.mp3,Twiga.,giraffe,"Wanyama, 'Sikiliza' after the round"
+C,mnyama_kiboko.mp3,Kiboko.,hippo,"Wanyama, 'Sikiliza' after the round"
+C,mnyama_nyani.mp3,Nyani.,baboon,"Wanyama, 'Sikiliza' after the round"
+C,mnyama_pundamilia.mp3,Pundamilia.,zebra,"Wanyama, 'Sikiliza' after the round"
+C,mnyama_fisi.mp3,Fisi.,hyena,"Wanyama, 'Sikiliza' after the round"
+C,mnyama_mamba.mp3,Mamba.,crocodile,"Wanyama, 'Sikiliza' after the round"

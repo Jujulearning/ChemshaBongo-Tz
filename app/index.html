@@ -75,6 +75,8 @@ button,input{font:inherit;color:inherit}
 .btn.ghost:active{transform:translateY(2px);box-shadow:inset 0 0 0 2px var(--ink)}
 .btn.small{min-height:44px;padding:0 18px;font-size:14px}
 .btn.block{width:100%}
+.btn.listen{align-self:flex-start;margin-top:4px}
+.btn svg{width:20px;height:20px;flex:0 0 auto}
 .btn:disabled{opacity:.4;cursor:not-allowed;transform:none}
 .btns{display:grid;grid-template-columns:1fr 1fr;gap:12px}
 .link{background:none;border:none;color:var(--ink);font-weight:700;text-decoration:underline;text-underline-offset:3px;min-height:44px;cursor:pointer;padding:0;text-align:left}
@@ -326,6 +328,7 @@ img.av{object-fit:cover}
 <main class="app" id="app"></main>
 <canvas id="confetti" aria-hidden="true"></canvas>
 <script>
+const AUDIO_FILES=[];
 const METHALI={"version":1,"mode":"malizia_methali","source":"Swahili Proverbs (Methali za Kiswahili), University of Illinois — Ambition section. Numbers are the source's entry numbers. Translations and meanings below are our own wording.","levels":["chipukizi","mjanja","dingi"],"notes":"Each question hides the 'blank' word. 'options' always contains the correct answer first; shuffle in the app. 'min_age' lets onboarding age filter content.","questions":[{"id":399,"text":"Daima mbele.","prompt":"Daima ___.","blank":"mbele","options":["mbele","nyuma","juu","chini"],"translation_en":"Always forward.","meaning_sw":"Usirudi nyuma; endelea kusonga mbele.","meaning_en":"Keep moving ahead, never backward.","level":"chipukizi","min_age":6,"theme":"bidii"},{"id":408,"text":"Jaribu uone.","prompt":"Jaribu ___.","blank":"uone","options":["uone","ulale","uende","ucheke"],"translation_en":"Try and you will see.","meaning_sw":"Huwezi kujua matokeo bila kujaribu.","meaning_en":"You only find out by trying.","level":"chipukizi","min_age":6,"theme":"bidii"},{"id":422,"text":"Kila mwanzo ni mzito.","prompt":"Kila mwanzo ni ___.","blank":"mzito","options":["mzito","mwepesi","mzuri","mrefu"],"translation_en":"Every beginning is heavy.","meaning_sw":"Kuanza jambo jipya huwa kugumu, lakini usikate tamaa.","meaning_en":"Starting anything is hard; push through it.","level":"chipukizi","min_age":6,"theme":"mwanzo"},{"id":389,"text":"Anayejitahidi hufaidi.","prompt":"Anayejitahidi ___.","blank":"hufaidi","options":["hufaidi","hulala","huchoka","hukimbia"],"translation_en":"Whoever strives, benefits.","meaning_sw":"Juhudi huleta faida.","meaning_en":"Effort pays off.","level":"chipukizi","min_age":6,"theme":"bidii"},{"id":425,"text":"Kila ufanyacho kifanye vema.","prompt":"Kila ufanyacho kifanye ___.","blank":"vema","options":["vema","haraka","kesho","polepole"],"translation_en":"Whatever you do, do it well.","meaning_sw":"Fanya kazi yako kwa ubora, hata kama ni ndogo.","meaning_en":"Put quality into everything you do.","level":"chipukizi","min_age":6,"theme":"bidii"},{"id":473,"text":"Tumaini hadi mwisho.","prompt":"Tumaini hadi ___.","blank":"mwisho","options":["mwisho","kesho","mwanzo","jioni"],"translation_en":"Hope until the end.","meaning_sw":"Usipoteze matumaini mpaka jambo liishe.","meaning_en":"Stay confident all the way to the finish.","level":"chipukizi","min_age":6,"theme":"matumaini"},{"id":392,"text":"Atakaye kufuga ng'ombe aanze na kuku.","prompt":"Atakaye kufuga ng'ombe aanze na ___.","blank":"kuku","options":["kuku","mbuzi","simba","samaki"],"translation_en":"Whoever wants to keep cattle should start with chickens.","meaning_sw":"Anza kidogo kabla ya kufikia makubwa.","meaning_en":"Don't look down on small beginnings.","level":"chipukizi","min_age":6,"theme":"mwanzo"},{"id":448,"text":"Mtaka cha mvunguni sharti ainame.","prompt":"Mtaka cha mvunguni sharti ___.","blank":"ainame","options":["ainame","aruke","alale","aombe"],"translation_en":"Whoever wants what is under the bed must bend down.","meaning_sw":"Vitu vizuri havipatikani kirahisi; lazima ujitahidi.","meaning_en":"Good things take effort to get.","level":"mjanja","min_age":8,"theme":"bidii"},{"id":449,"text":"Mtaka kilicho mbali hukitembelea.","prompt":"Mtaka kilicho mbali ___.","blank":"hukitembelea","options":["hukitembelea","hukisahau","hukiogopa","hukiacha"],"translation_en":"Whoever wants what is far away walks to it.","meaning_sw":"Ukitaka kitu kilicho mbali, fanya kila juhudi kukifikia.","meaning_en":"Distant goals need you to go after them.","level":"mjanja","min_age":8,"theme":"bidii"},{"id":406,"text":"Huwezi kujua ukiwezacho mpaka umejaribu.","prompt":"Huwezi kujua ukiwezacho mpaka ___.","blank":"umejaribu","options":["umejaribu","umelala","umesoma","umekula"],"translation_en":"You can't know what you can do until you've tried.","meaning_sw":"Uwezo wako hujulikana unapojaribu.","meaning_en":"You discover your ability by attempting things.","level":"mjanja","min_age":8,"theme":"bidii"},{"id":423,"text":"Kila ndege huruka kwa bawa lake.","prompt":"Kila ndege huruka kwa ___ lake.","blank":"bawa","options":["bawa","mguu","mdomo","mkia"],"translation_en":"Every bird flies with its own wing.","meaning_sw":"Kila mtu hufanya kulingana na uwezo wake.","meaning_en":"Everyone works within their own strengths.","level":"mjanja","min_age":8,"theme":"uwezo"},{"id":444,"text":"Msasi haogopi miiba.","prompt":"Msasi haogopi ___.","blank":"miiba","options":["miiba","mvua","giza","simba"],"translation_en":"A hunter isn't afraid of thorns.","meaning_sw":"Anayetaka kufanikiwa hapaswi kuogopa magumu.","meaning_en":"If you want success, don't fear the hard parts.","level":"mjanja","min_age":8,"theme":"ujasiri"},{"id":446,"text":"Mshoni hachagui nguo.","prompt":"Mshoni hachagui ___.","blank":"nguo","options":["nguo","sindano","rangi","uzi"],"translation_en":"A tailor doesn't choose the cloth.","meaning_sw":"Fanya kazi na kile ulicho nacho.","meaning_en":"Work with what you're given.","level":"mjanja","min_age":8,"theme":"uwezo"},{"id":431,"text":"Kulenga si kufuma.","prompt":"Kulenga si ___.","blank":"kufuma","options":["kufuma","kukosa","kurusha","kuona"],"translation_en":"Aiming is not hitting.","meaning_sw":"Kupanga si sawa na kufanikiwa; usishangilie mapema.","meaning_en":"A plan isn't a result. Don't celebrate too early.","level":"mjanja","min_age":8,"theme":"mipango"},{"id":395,"text":"Bahari haivukwi kwa kuogelea.","prompt":"Bahari haivukwi kwa ___.","blank":"kuogelea","options":["kuogelea","kutembea","kuruka","kusubiri"],"translation_en":"The ocean isn't crossed by swimming.","meaning_sw":"Kazi kubwa inahitaji njia na vifaa sahihi.","meaning_en":"Big goals need the right means, not just effort.","level":"mjanja","min_age":8,"theme":"mipango"},{"id":396,"text":"Banda likikushinda, jenga kibanda.","prompt":"Banda likikushinda, jenga ___.","blank":"kibanda","options":["kibanda","jumba","ghorofa","ukuta"],"translation_en":"If a hut is too much for you, build a shack.","meaning_sw":"Ukishindwa jambo kubwa, anza na dogo unaloliweza.","meaning_en":"Scale down to what you can manage.","level":"mjanja","min_age":8,"theme":"uwezo"},{"id":483,"text":"Unyoshe miguu kadiri ya kitanda.","prompt":"Unyoshe miguu kadiri ya ___.","blank":"kitanda","options":["kitanda","chumba","nyumba","mkeka"],"translation_en":"Stretch your legs to the length of your bed.","meaning_sw":"Tumia kulingana na uwezo wako.","meaning_en":"Live within your means.","level":"mjanja","min_age":8,"theme":"uwezo"},{"id":458,"text":"Mwanzo mateso, mwisho furaha.","prompt":"Mwanzo mateso, mwisho ___.","blank":"furaha","options":["furaha","huzuni","mateso","kilio"],"translation_en":"Hardship at the start, joy at the end.","meaning_sw":"Mwisho mzuri huja baada ya juhudi ngumu.","meaning_en":"A happy ending follows the hard work.","level":"mjanja","min_age":8,"theme":"matumaini"},{"id":490,"text":"Usipokubali kutia mguu majini hutavuka kijito.","prompt":"Usipokubali kutia mguu majini hutavuka ___.","blank":"kijito","options":["kijito","bahari","mlima","barabara"],"translation_en":"If you won't put your foot in the water, you won't cross the stream.","meaning_sw":"Lazima ukubali gharama ndogo ili ufike unakokwenda.","meaning_en":"You have to get your feet wet to get across.","level":"dingi","min_age":10,"theme":"ujasiri"},{"id":438,"text":"Mfupa uliomshinda fisi, mbwa atauweza?","prompt":"Mfupa uliomshinda ___, mbwa atauweza?","blank":"fisi","options":["fisi","simba","paka","kuku"],"translation_en":"The bone that beat the hyena, can a dog manage it?","meaning_sw":"Kama mwenye nguvu ameshindwa, mdhaifu atawezaje?","meaning_en":"If the strong couldn't do it, how will the weaker?","level":"dingi","min_age":10,"theme":"uwezo"},{"id":445,"text":"Mshale usio nyoya hauendi mbali.","prompt":"Mshale usio ___ hauendi mbali.","blank":"nyoya","options":["nyoya","ncha","upinde","rangi"],"translation_en":"An arrow without feathers won't go far.","meaning_sw":"Vitu vidogo vinaweza kuwa muhimu kwa mafanikio.","meaning_en":"Small details can make or break success.","level":"dingi","min_age":10,"theme":"mipango"},{"id":415,"text":"Kelele za chura hazimkatazi ng'ombe kunywa maji.","prompt":"Kelele za chura hazimkatazi ng'ombe kunywa ___.","blank":"maji","options":["maji","maziwa","uji","chai"],"translation_en":"The frog's noise doesn't stop the cow from drinking.","meaning_sw":"Usiache kazi yako kwa sababu ya maneno ya watu.","meaning_en":"Don't let others' noise stop you.","level":"dingi","min_age":10,"theme":"ujasiri"},{"id":443,"text":"Msafiri mbali, hupita jabali.","prompt":"Msafiri mbali, hupita ___.","blank":"jabali","options":["jabali","mto","soko","kijiji"],"translation_en":"The far traveller passes the mountain.","meaning_sw":"Mwenye nia ya kufika mbali hushinda vikwazo.","meaning_en":"Determination carries you past obstacles.","level":"dingi","min_age":10,"theme":"bidii"},{"id":480,"text":"Ukioka samaki, huwezi kuondoa manyoya ya kuku.","prompt":"Ukioka samaki, huwezi kuondoa manyoya ya ___.","blank":"kuku","options":["kuku","bata","njiwa","kanga"],"translation_en":"While baking fish, you can't pluck a chicken.","meaning_sw":"Fanya jambo moja kwa wakati mmoja.","meaning_en":"Do one thing at a time.","level":"dingi","min_age":10,"theme":"mipango"}],"excluded_from_source":{"reason":"Adult themes or crude wording; keep out of the general pool until an 18+ content tier exists.","ids":[403,424,435,466,468,489]}};
 const GEO={"version":1,"mode":"unaijua","notes":"Questions are grouped by place. 'options' always has the correct answer first; shuffle in the app. Facts should be re-checked by a Tanzanian editor before launch, especially administrative boundaries, which change. Optional 'photo' (relative to app/) replaces the drawn mountain scene.","places":[{"name":"Dar es Salaam","zone":"Pwani","questions":[{"q":"Soko kubwa maarufu la Dar es Salaam ni lipi?","options":["Kariakoo","Kilombero","Mlango Mmoja","Majengo"],"level":"chipukizi","en":"What is Dar es Salaam's famous big market?"},{"q":"Makao makuu ya serikali yalihamia Dodoma kutoka mji gani?","options":["Dar es Salaam","Tanga","Arusha","Morogoro"],"level":"mjanja","en":"The seat of government moved to Dodoma from which city?"}]},{"name":"Kilimanjaro","zone":"Kaskazini","questions":[{"q":"Mlima mrefu zaidi barani Afrika uko mkoa gani?","options":["Kilimanjaro","Arusha","Tanga","Mbeya"],"level":"chipukizi","en":"Africa's highest mountain is in which region?"},{"q":"Makao makuu ya mkoa wa Kilimanjaro ni mji gani?","options":["Moshi","Arusha","Same","Hai"],"level":"mjanja","en":"What is the regional capital of Kilimanjaro?"}]},{"name":"Iringa","zone":"Nyanda za Juu Kusini","questions":[{"q":"Chifu gani wa Wahehe alipigana na Wajerumani?","options":["Mkwawa","Mirambo","Kinjikitile","Isike"],"level":"mjanja","en":"Which Hehe chief fought the Germans?"},{"q":"Hifadhi ya Taifa ya Ruaha iko karibu na mji gani?","options":["Iringa","Moshi","Tanga","Musoma"],"level":"mjanja","en":"Ruaha National Park is near which town?"}]},{"name":"Arusha","zone":"Kaskazini","questions":[{"q":"Mlima Meru uko mkoa gani?","options":["Arusha","Kilimanjaro","Manyara","Mbeya"],"level":"chipukizi","en":"Mount Meru is in which region?","photo":"img/jiografia/meru.jpg"},{"q":"Azimio la Arusha lilitangazwa mwaka gani?","options":["1967","1961","1964","1977"],"level":"dingi","en":"In what year was the Arusha Declaration made?"},{"q":"Bonde la Ngorongoro liko mkoa gani?","options":["Arusha","Mara","Manyara","Kilimanjaro"],"level":"mjanja","en":"The Ngorongoro Crater is in which region?","photo":"img/jiografia/ngorongoro.jpg"}]},{"name":"Dodoma","zone":"Kati","questions":[{"q":"Bunge la Tanzania liko mji gani?","options":["Dodoma","Dar es Salaam","Arusha","Morogoro"],"level":"chipukizi","en":"Tanzania's parliament sits in which city?"}]},{"name":"Mwanza","zone":"Ziwa","questions":[{"q":"Mwanza iko kando ya ziwa gani?","options":["Ziwa Victoria","Ziwa Tanganyika","Ziwa Nyasa","Ziwa Rukwa"],"level":"chipukizi","en":"Mwanza is on the shore of which lake?"}]},{"name":"Zanzibar (Unguja)","zone":"Visiwani","questions":[{"q":"Mji Mkongwe (Stone Town) uko kisiwa gani?","options":["Unguja","Pemba","Mafia","Kilwa Kisiwani"],"level":"chipukizi","en":"Stone Town is on which island?"},{"q":"Zanzibar inajulikana kwa zao gani la viungo?","options":["Karafuu","Kahawa","Pamba","Chai"],"level":"mjanja","en":"Zanzibar is famous for which spice crop?"}]},{"name":"Kigoma","zone":"Magharibi","questions":[{"q":"Hifadhi ya sokwe ya Gombe iko mkoa gani?","options":["Kigoma","Mara","Rukwa","Katavi"],"level":"mjanja","en":"Gombe chimpanzee park is in which region?"},{"q":"Stanley alikutana na Livingstone mahali gani?","options":["Ujiji","Tabora","Bagamoyo","Kilwa"],"level":"dingi","en":"Where did Stanley meet Livingstone?"}]},{"name":"Tanga","zone":"Kaskazini Mashariki","questions":[{"q":"Mapango ya Amboni yako mkoa gani?","options":["Tanga","Morogoro","Lindi","Pwani"],"level":"mjanja","en":"The Amboni Caves are in which region?"}]},{"name":"Lindi","zone":"Kusini","questions":[{"q":"Magofu ya Kilwa Kisiwani yako mkoa gani?","options":["Lindi","Mtwara","Pwani","Tanga"],"level":"dingi","en":"The Kilwa Kisiwani ruins are in which region?"}]},{"name":"Morogoro","zone":"Mashariki","questions":[{"q":"Milima ya Uluguru iko mkoa gani?","options":["Morogoro","Iringa","Tanga","Mbeya"],"level":"mjanja","en":"The Uluguru Mountains are in which region?"}]},{"name":"Serengeti","zone":"Kaskazini","questions":[{"q":"Serengeti inajulikana duniani kwa msafara wa mnyama gani?","options":["Nyumbu","Tembo","Twiga","Kiboko"],"level":"chipukizi","en":"Serengeti is world-famous for the migration of which animal?"}]}]};
 const CHORA={"version":1,"mode":"chora_tuone","notes":"Drawing words for Chora Tuone (pictionary). The drawer sees 'word'; guessers type it in Swahili. 'en' is shown after the round. All words are suitable for ages 6+.","words":[{"word":"kuku","en":"chicken","level":"chipukizi"},{"word":"jua","en":"sun","level":"chipukizi"},{"word":"nyumba","en":"house","level":"chipukizi"},{"word":"samaki","en":"fish","level":"chipukizi"},{"word":"mti","en":"tree","level":"chipukizi"},{"word":"gari","en":"car","level":"chipukizi"},{"word":"mpira","en":"ball","level":"chipukizi"},{"word":"ndizi","en":"banana","level":"chipukizi"},{"word":"kiti","en":"chair","level":"chipukizi"},{"word":"mwezi","en":"moon","level":"chipukizi"},{"word":"paka","en":"cat","level":"chipukizi"},{"word":"nyota","en":"star","level":"chipukizi"},{"word":"jokofu","en":"fridge","level":"mjanja"},{"word":"bajaji","en":"auto-rickshaw","level":"mjanja"},{"word":"daladala","en":"minibus","level":"mjanja"},{"word":"kanga","en":"printed cloth wrap","level":"mjanja"},{"word":"pikipiki","en":"motorbike","level":"mjanja"},{"word":"mwavuli","en":"umbrella","level":"mjanja"},{"word":"ugali","en":"maize porridge","level":"mjanja"},{"word":"chapati","en":"flatbread","level":"mjanja"},{"word":"kibatari","en":"small oil lamp","level":"mjanja"},{"word":"mashua","en":"boat","level":"mjanja"},{"word":"twiga","en":"giraffe","level":"mjanja"},{"word":"simu","en":"phone","level":"mjanja"},{"word":"darubini","en":"telescope / microscope","level":"dingi"},{"word":"kinyonga","en":"chameleon","level":"dingi"},{"word":"kifaru","en":"rhino","level":"dingi"},{"word":"ngalawa","en":"outrigger canoe","level":"dingi"},{"word":"mbuyu","en":"baobab tree","level":"dingi"},{"word":"kinu","en":"mortar (for pounding)","level":"dingi"},{"word":"mlingoti","en":"mast / flagpole","level":"dingi"},{"word":"tarumbeta","en":"trumpet","level":"dingi"},{"word":"jahazi","en":"dhow","level":"dingi"},{"word":"kipepeo","en":"butterfly","level":"dingi"}]};
@@ -347,6 +350,7 @@ const I = {
   undo:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 14L4 9l5-5"/><path d="M4 9h11a5 5 0 0 1 0 10h-3"/></svg>',
   trash:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 7h16M10 11v6M14 11v6M6 7l1 13h10l1-13M9 7V4h6v3"/></svg>',
   camera:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 8h3l2-3h6l2 3h3v11H4z"/><circle cx="12" cy="13" r="3.5"/></svg>',
+  speaker:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 10v4h4l5 4V6L8 10z"/><path d="M16 9a4 4 0 0 1 0 6M18.5 6.5a8 8 0 0 1 0 11"/></svg>',
   eye:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M2 12s4-7 10-7 10 7 10 7-4 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/></svg>'
 };
 
@@ -531,6 +535,25 @@ ART.thumbChora = () => `<svg viewBox="0 0 100 100" aria-hidden="true"><rect widt
   }
   function levelName(id) { const l = LEVELS.find(x => x.id === id); return l ? l.name : ''; }
 
+  /* ---------- voices (ElevenLabs recordings in app/audio/) ---------- */
+  const HAS_AUDIO = new Set(typeof AUDIO_FILES !== 'undefined' ? AUDIO_FILES : []);
+  const audioCache = {};
+  const RIGHT = ['sahihi_1', 'sahihi_2', 'sahihi_3'], WRONG = ['kosa_1', 'kosa_2'];
+  function say(id, delay, force) {
+    if (Array.isArray(id)) { const have = id.filter(x => HAS_AUDIO.has(x)); id = have[Math.floor(Math.random() * have.length)]; }
+    if (!id || !HAS_AUDIO.has(id) || (S.sound === false && !force)) return;
+    const play = () => {
+      try {
+        Object.keys(audioCache).forEach(k => { if (k !== id) audioCache[k].pause(); });
+        const a = audioCache[id] || (audioCache[id] = new Audio(`audio/${id}.mp3`));
+        a.currentTime = 0;
+        const pr = a.play(); if (pr && pr.catch) pr.catch(() => { /* blocked or missing: stay silent */ });
+      } catch (e) { /* ignore */ }
+    };
+    if (delay) { const t = setTimeout(play, delay); addCleanup(() => clearTimeout(t)); } else play();
+  }
+  const listenBtn = id => HAS_AUDIO.has(id) ? `<button type="button" class="btn ghost small listen" data-say="${id}">${I.speaker} Sikiliza</button>` : '';
+
   function avatar(p, cls) {
     p = p || S.profile; cls = cls || 'av';
     if (!p) return '';
@@ -556,6 +579,8 @@ ART.thumbChora = () => `<svg viewBox="0 0 100 100" aria-hidden="true"><rect widt
   }
 
   app.addEventListener('click', e => {
+    const sb = e.target.closest('[data-say]');
+    if (sb) { say(sb.dataset.say, 0, true); return; }
     const t = e.target.closest('[data-go]');
     if (!t) return;
     const r = t.dataset.go;
@@ -703,7 +728,7 @@ ART.thumbChora = () => `<svg viewBox="0 0 100 100" aria-hidden="true"><rect widt
       if (av === 'selfie' && !selfie) { $('#err').textContent = 'Piga au chagua selfie kwanza, au chagua avatar.'; return; }
       if (editing) { S.profile.avatar = av; S.profile.selfie = selfie; save(); go(scrProfile); return; }
       S.profile = Object.assign({}, S.draft, { avatar: av, selfie });
-      S.draft = null; save(); go(scrHome);
+      S.draft = null; save(); go(scrHome); say('karibu', 250);
     });
   }
 
@@ -762,7 +787,7 @@ ART.thumbChora = () => `<svg viewBox="0 0 100 100" aria-hidden="true"><rect widt
     if (kind === 'methali') {
       items = pick(METHALI.questions, q => q.level, q => q.min_age, practice ? 2 : 5, practice).map(q => ({
         prompt: q.prompt, answer: q.blank, options: q.options, eyebrow: 'Malizia methali',
-        after: `<b class="big">${esc(q.text)}</b><span>${esc(q.meaning_sw)}</span><span class="muted">${esc(q.translation_en)} ${esc(q.meaning_en)}</span>`
+        after: `<b class="big">${esc(q.text)}</b><span>${esc(q.meaning_sw)}</span><span class="muted">${esc(q.translation_en)} ${esc(q.meaning_en)}</span>${listenBtn('methali_' + q.id)}`
       }));
     } else {
       const flat = [];
@@ -772,6 +797,7 @@ ART.thumbChora = () => `<svg viewBox="0 0 100 100" aria-hidden="true"><rect widt
       }));
     }
     go(renderQ, { kind, mode: kind, practice, items, i: 0, score: 0, streak: 0, best: 0, correct: 0, results: [] });
+    say('tuanze');
   }
 
   function dotsHTML(G) {
@@ -833,6 +859,7 @@ ART.thumbChora = () => `<svg viewBox="0 0 100 100" aria-hidden="true"><rect widt
         G.score += pts;
         if (pts) floater($('#qcard'), `+${pts}`);
       } else G.streak = 0;
+      say(ok ? (G.streak > 2 ? 'moto' : RIGHT) : choice === null ? 'muda' : WRONG);
       popStreak(G);
       G.results.push(ok);
       const last = G.i === G.items.length - 1;
@@ -856,6 +883,7 @@ ART.thumbChora = () => `<svg viewBox="0 0 100 100" aria-hidden="true"><rect widt
     kind = kind || 'mazao'; const cfg = HANG[kind];
     const items = practice ? cfg.list().filter(c => c.id === cfg.practiceId) : pick(cfg.list(), c => c.level, () => 0, 3, false);
     go(renderCrop, { kind, mode: kind, practice, items, i: 0, score: 0, correct: 0, streak: 0, best: 0, results: [] });
+    say('tuanze');
   }
   function renderCrop(G) {
     const cfg = HANG[G.mode];
@@ -908,9 +936,10 @@ ART.thumbChora = () => `<svg viewBox="0 0 100 100" aria-hidden="true"><rect widt
         pts = G.practice ? 0 : Math.max(20, 100 + 15 * (R.max - R.miss.size) + Math.min(100, (G.streak - 1) * 20) - 20 * R.hints);
         G.score += pts; if (pts) floater($('#crop'), `+${pts}`);
       } else G.streak = 0;
+      say(won ? (G.streak > 2 ? 'moto' : RIGHT) : (G.mode === 'mazao' ? 'mmea_umekauka' : 'matone_yameisha'));
       popStreak(G); G.results.push(won);
       const last = G.i === G.items.length - 1;
-      $('#foot').innerHTML = `<div class="feedback ${won ? '' : 'bad'}"><b class="big">${won ? `Safi! Ni ${c.word.toLowerCase()}.` : `${cfg.lose} Jibu: ${c.word.toLowerCase()}.`}</b><span><b>Wapi:</b> ${esc(c.wapi)}</span><span><b>Kwa nini:</b> ${esc(c.nini)}</span><span class="muted">${esc(c.en)}: ${esc(c.en_fact)}</span></div><button class="btn block" id="next">${last ? 'Ona matokeo' : cfg.next}</button>`;
+      $('#foot').innerHTML = `<div class="feedback ${won ? '' : 'bad'}"><b class="big">${won ? `Safi! Ni ${c.word.toLowerCase()}.` : `${cfg.lose} Jibu: ${c.word.toLowerCase()}.`}</b><span><b>Wapi:</b> ${esc(c.wapi)}</span><span><b>Kwa nini:</b> ${esc(c.nini)}</span><span class="muted">${esc(c.en)}: ${esc(c.en_fact)}</span>${listenBtn((G.mode === 'mazao' ? 'zao_' : 'mnyama_') + c.id)}</div><button class="btn block" id="next">${last ? 'Ona matokeo' : cfg.next}</button>`;
       $('#next').addEventListener('click', () => {
         if (last) go(scrResults, { mode: G.mode, practice: G.practice, score: G.score, correct: G.correct, total: G.items.length, best: G.best, win: G.correct >= Math.ceil(G.items.length * .6) });
         else { G.i++; go(renderCrop, G); }
@@ -943,8 +972,8 @@ ART.thumbChora = () => `<svg viewBox="0 0 100 100" aria-hidden="true"><rect widt
     $('#go').addEventListener('click', () => {
       let n = 3; const cd = $('#cd');
       const tick = () => {
-        if (n === 0) { go(scrHeadsPlay, deck, practice); return; }
-        cd.innerHTML = `<div class="bigcount" aria-live="assertive">${n}</div>`; n--;
+        if (n === 0) { go(scrHeadsPlay, deck, practice); say('anza'); return; }
+        cd.innerHTML = `<div class="bigcount" aria-live="assertive">${n}</div>`; say(['', 'moja', 'mbili', 'tatu'][n]); n--;
         const t = setTimeout(tick, 800); addCleanup(() => clearTimeout(t));
       };
       tick();
@@ -961,9 +990,11 @@ ART.thumbChora = () => `<svg viewBox="0 0 100 100" aria-hidden="true"><rect widt
       <p class="fine">Kwenye app kamili utainamisha simu. Kwa beta, bonyeza vitufe.</p>
     </div>`;
     const card = $('#card'), bar = $('#tbar'), tm = $('#timer');
-    countdown(T, left => { bar.style.width = (left / T * 100) + '%'; tm.classList.toggle('low', left < 10000); $('#secs').textContent = Math.ceil(left / 1000); }, end);
+    let warned = false;
+    countdown(T, left => { bar.style.width = (left / T * 100) + '%'; tm.classList.toggle('low', left < 10000); $('#secs').textContent = Math.ceil(left / 1000); if (left < 10000 && !warned) { warned = true; say('sekunde_kumi'); } }, end);
     function next(ok) {
       if (over) return;
+      say(ok ? 'sahihi_1' : 'pita');
       log.push({ w: words[i % words.length], ok });
       $('#got').innerHTML = `${I.check}${log.filter(x => x.ok).length}`;
       card.classList.remove('flip', 'ok', 'pass'); void card.offsetWidth; card.classList.add(ok ? 'ok' : 'pass');
@@ -975,6 +1006,7 @@ ART.thumbChora = () => `<svg viewBox="0 0 100 100" aria-hidden="true"><rect widt
     $('#pass').addEventListener('click', () => next(false));
     function end() {
       if (over) return; over = true;
+      if (i < words.length) say('muda');
       const correct = log.filter(x => x.ok).length;
       const extra = `<div class="stack" style="width:100%"><span class="eyebrow">Maneno ya raundi</span><ul class="wordlist">${log.map(x => `<li class="${x.ok ? '' : 'p'}">${x.ok ? I.check : I.skip}${esc(x.w)}</li>`).join('') || '<li class="p">Hakuna neno lililochezwa</li>'}</ul></div>`;
       go(scrResults, { mode: 'heads', practice, score: practice ? 0 : correct * 60, correct, total: log.length, best: correct, win: correct >= (practice ? 2 : 5), extra, again: () => go(scrHeadsReady, deck, practice) });
@@ -1064,12 +1096,14 @@ ART.thumbChora = () => `<svg viewBox="0 0 100 100" aria-hidden="true"><rect widt
     let ro = null;
     if (window.ResizeObserver) { ro = new ResizeObserver(size); ro.observe(canvas); addCleanup(() => ro.disconnect()); } else size();
     const bar = $('#tbar'), tm = $('#timer');
-    let ended = false;
-    const stop = countdown(T, left => { bar.style.width = (left / T * 100) + '%'; tm.classList.toggle('low', left < 10000); $('#secs').textContent = Math.ceil(left / 1000); }, () => endTurn(false, true));
+    let ended = false, warned = false;
+    say('chora');
+    const stop = countdown(T, left => { bar.style.width = (left / T * 100) + '%'; tm.classList.toggle('low', left < 10000); $('#secs').textContent = Math.ceil(left / 1000); if (left < 10000 && !warned) { warned = true; say('sekunde_kumi'); } }, () => endTurn(false, true));
     $('#got').addEventListener('click', () => endTurn(true));
     $('#pass').addEventListener('click', () => endTurn(false));
     function endTurn(ok, timeout) {
       if (ended) return; ended = true; stop();
+      say(ok ? 'wamepata' : timeout ? 'muda' : 'pita');
       if (ok) team.score++;
       G.log = G.log || []; G.log.push({ team: team.name, w: word.word, ok });
       G.turn++; G.w++;
@@ -1117,6 +1151,8 @@ ART.thumbChora = () => `<svg viewBox="0 0 100 100" aria-hidden="true"><rect widt
       else if (r.again) r.again(); else MODES[r.mode].start(false);
     });
     if (r.win) confetti();
+    say(r.win ? 'ushindi' : 'jaribu_tena', 900);
+    if (dayUp) say('mfululizo', 3200);
   }
 
   /* ---------- league ---------- */
@@ -1143,6 +1179,8 @@ ART.thumbChora = () => `<svg viewBox="0 0 100 100" aria-hidden="true"><rect widt
     app.innerHTML = `${ART.band()}<div class="screen">
       <div class="celebrate calm" style="padding-top:0">${avatar(p, 'av big')}<h1 class="h1">${esc(p.name)}</h1><span class="lvl">${levelName(p.level)}</span></div>
       <button class="btn ghost block" id="chav">${I.camera} Badilisha avatar au selfie</button>
+      <button class="btn ghost block" id="snd" aria-pressed="${S.sound !== false}">${I.speaker} ${S.sound !== false ? 'Sauti: imewashwa' : 'Sauti: imezimwa'}</button>
+      ${HAS_AUDIO.size ? '' : '<p class="fine">Sauti za mchezo zinakuja hivi karibuni.</p>'}
       <div class="stats">
         <div class="stat"><b>${fmt(S.points)}</b><span>Pointi</span></div>
         <div class="stat"><b>${liveStreak()}</b><span>Siku mfululizo</span></div>
@@ -1156,6 +1194,11 @@ ART.thumbChora = () => `<svg viewBox="0 0 100 100" aria-hidden="true"><rect widt
       <div id="danger" class="stack"><button class="link" id="wipe">Futa data yangu na uanze upya</button></div>
     </div>${nav('profile')}`;
     $('#chav').addEventListener('click', () => go(scrAvatar, true));
+    $('#snd').addEventListener('click', () => {
+      S.sound = S.sound === false; save();
+      const b = $('#snd'); b.setAttribute('aria-pressed', String(S.sound)); b.innerHTML = `${I.speaker} ${S.sound ? 'Sauti: imewashwa' : 'Sauti: imezimwa'}`;
+      say(RIGHT);
+    });
     $$('input[name="lvl"]').forEach(r => r.addEventListener('change', () => { S.profile.level = r.value; save(); }));
     $('#wipe').addEventListener('click', () => {
       $('#danger').innerHTML = `<div class="confirm"><b>Futa kila kitu?</b><span>Pointi, mfululizo, selfie na wasifu wako vitafutwa kwenye kifaa hiki.</span><div class="btns"><button class="btn ghost small" id="no">Hapana</button><button class="btn small" id="yes">Ndiyo, futa</button></div></div>`;

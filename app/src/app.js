@@ -61,6 +61,25 @@
   }
   function levelName(id) { const l = LEVELS.find(x => x.id === id); return l ? l.name : ''; }
 
+  /* ---------- voices (ElevenLabs recordings in app/audio/) ---------- */
+  const HAS_AUDIO = new Set(typeof AUDIO_FILES !== 'undefined' ? AUDIO_FILES : []);
+  const audioCache = {};
+  const RIGHT = ['sahihi_1', 'sahihi_2', 'sahihi_3'], WRONG = ['kosa_1', 'kosa_2'];
+  function say(id, delay, force) {
+    if (Array.isArray(id)) { const have = id.filter(x => HAS_AUDIO.has(x)); id = have[Math.floor(Math.random() * have.length)]; }
+    if (!id || !HAS_AUDIO.has(id) || (S.sound === false && !force)) return;
+    const play = () => {
+      try {
+        Object.keys(audioCache).forEach(k => { if (k !== id) audioCache[k].pause(); });
+        const a = audioCache[id] || (audioCache[id] = new Audio(`audio/${id}.mp3`));
+        a.currentTime = 0;
+        const pr = a.play(); if (pr && pr.catch) pr.catch(() => { /* blocked or missing: stay silent */ });
+      } catch (e) { /* ignore */ }
+    };
+    if (delay) { const t = setTimeout(play, delay); addCleanup(() => clearTimeout(t)); } else play();
+  }
+  const listenBtn = id => HAS_AUDIO.has(id) ? `<button type="button" class="btn ghost small listen" data-say="${id}">${I.speaker} Sikiliza</button>` : '';
+
   function avatar(p, cls) {
     p = p || S.profile; cls = cls || 'av';
     if (!p) return '';
@@ -86,6 +105,8 @@
   }
 
   app.addEventListener('click', e => {
+    const sb = e.target.closest('[data-say]');
+    if (sb) { say(sb.dataset.say, 0, true); return; }
     const t = e.target.closest('[data-go]');
     if (!t) return;
     const r = t.dataset.go;
@@ -233,7 +254,7 @@
       if (av === 'selfie' && !selfie) { $('#err').textContent = 'Piga au chagua selfie kwanza, au chagua avatar.'; return; }
       if (editing) { S.profile.avatar = av; S.profile.selfie = selfie; save(); go(scrProfile); return; }
       S.profile = Object.assign({}, S.draft, { avatar: av, selfie });
-      S.draft = null; save(); go(scrHome);
+      S.draft = null; save(); go(scrHome); say('karibu', 250);
     });
   }
 
@@ -292,7 +313,7 @@
     if (kind === 'methali') {
       items = pick(METHALI.questions, q => q.level, q => q.min_age, practice ? 2 : 5, practice).map(q => ({
         prompt: q.prompt, answer: q.blank, options: q.options, eyebrow: 'Malizia methali',
-        after: `<b class="big">${esc(q.text)}</b><span>${esc(q.meaning_sw)}</span><span class="muted">${esc(q.translation_en)} ${esc(q.meaning_en)}</span>`
+        after: `<b class="big">${esc(q.text)}</b><span>${esc(q.meaning_sw)}</span><span class="muted">${esc(q.translation_en)} ${esc(q.meaning_en)}</span>${listenBtn('methali_' + q.id)}`
       }));
     } else {
       const flat = [];
@@ -302,6 +323,7 @@
       }));
     }
     go(renderQ, { kind, mode: kind, practice, items, i: 0, score: 0, streak: 0, best: 0, correct: 0, results: [] });
+    say('tuanze');
   }
 
   function dotsHTML(G) {
@@ -363,6 +385,7 @@
         G.score += pts;
         if (pts) floater($('#qcard'), `+${pts}`);
       } else G.streak = 0;
+      say(ok ? (G.streak > 2 ? 'moto' : RIGHT) : choice === null ? 'muda' : WRONG);
       popStreak(G);
       G.results.push(ok);
       const last = G.i === G.items.length - 1;
@@ -386,6 +409,7 @@
     kind = kind || 'mazao'; const cfg = HANG[kind];
     const items = practice ? cfg.list().filter(c => c.id === cfg.practiceId) : pick(cfg.list(), c => c.level, () => 0, 3, false);
     go(renderCrop, { kind, mode: kind, practice, items, i: 0, score: 0, correct: 0, streak: 0, best: 0, results: [] });
+    say('tuanze');
   }
   function renderCrop(G) {
     const cfg = HANG[G.mode];
@@ -438,9 +462,10 @@
         pts = G.practice ? 0 : Math.max(20, 100 + 15 * (R.max - R.miss.size) + Math.min(100, (G.streak - 1) * 20) - 20 * R.hints);
         G.score += pts; if (pts) floater($('#crop'), `+${pts}`);
       } else G.streak = 0;
+      say(won ? (G.streak > 2 ? 'moto' : RIGHT) : (G.mode === 'mazao' ? 'mmea_umekauka' : 'matone_yameisha'));
       popStreak(G); G.results.push(won);
       const last = G.i === G.items.length - 1;
-      $('#foot').innerHTML = `<div class="feedback ${won ? '' : 'bad'}"><b class="big">${won ? `Safi! Ni ${c.word.toLowerCase()}.` : `${cfg.lose} Jibu: ${c.word.toLowerCase()}.`}</b><span><b>Wapi:</b> ${esc(c.wapi)}</span><span><b>Kwa nini:</b> ${esc(c.nini)}</span><span class="muted">${esc(c.en)}: ${esc(c.en_fact)}</span></div><button class="btn block" id="next">${last ? 'Ona matokeo' : cfg.next}</button>`;
+      $('#foot').innerHTML = `<div class="feedback ${won ? '' : 'bad'}"><b class="big">${won ? `Safi! Ni ${c.word.toLowerCase()}.` : `${cfg.lose} Jibu: ${c.word.toLowerCase()}.`}</b><span><b>Wapi:</b> ${esc(c.wapi)}</span><span><b>Kwa nini:</b> ${esc(c.nini)}</span><span class="muted">${esc(c.en)}: ${esc(c.en_fact)}</span>${listenBtn((G.mode === 'mazao' ? 'zao_' : 'mnyama_') + c.id)}</div><button class="btn block" id="next">${last ? 'Ona matokeo' : cfg.next}</button>`;
       $('#next').addEventListener('click', () => {
         if (last) go(scrResults, { mode: G.mode, practice: G.practice, score: G.score, correct: G.correct, total: G.items.length, best: G.best, win: G.correct >= Math.ceil(G.items.length * .6) });
         else { G.i++; go(renderCrop, G); }
@@ -473,8 +498,8 @@
     $('#go').addEventListener('click', () => {
       let n = 3; const cd = $('#cd');
       const tick = () => {
-        if (n === 0) { go(scrHeadsPlay, deck, practice); return; }
-        cd.innerHTML = `<div class="bigcount" aria-live="assertive">${n}</div>`; n--;
+        if (n === 0) { go(scrHeadsPlay, deck, practice); say('anza'); return; }
+        cd.innerHTML = `<div class="bigcount" aria-live="assertive">${n}</div>`; say(['', 'moja', 'mbili', 'tatu'][n]); n--;
         const t = setTimeout(tick, 800); addCleanup(() => clearTimeout(t));
       };
       tick();
@@ -491,9 +516,11 @@
       <p class="fine">Kwenye app kamili utainamisha simu. Kwa beta, bonyeza vitufe.</p>
     </div>`;
     const card = $('#card'), bar = $('#tbar'), tm = $('#timer');
-    countdown(T, left => { bar.style.width = (left / T * 100) + '%'; tm.classList.toggle('low', left < 10000); $('#secs').textContent = Math.ceil(left / 1000); }, end);
+    let warned = false;
+    countdown(T, left => { bar.style.width = (left / T * 100) + '%'; tm.classList.toggle('low', left < 10000); $('#secs').textContent = Math.ceil(left / 1000); if (left < 10000 && !warned) { warned = true; say('sekunde_kumi'); } }, end);
     function next(ok) {
       if (over) return;
+      say(ok ? 'sahihi_1' : 'pita');
       log.push({ w: words[i % words.length], ok });
       $('#got').innerHTML = `${I.check}${log.filter(x => x.ok).length}`;
       card.classList.remove('flip', 'ok', 'pass'); void card.offsetWidth; card.classList.add(ok ? 'ok' : 'pass');
@@ -505,6 +532,7 @@
     $('#pass').addEventListener('click', () => next(false));
     function end() {
       if (over) return; over = true;
+      if (i < words.length) say('muda');
       const correct = log.filter(x => x.ok).length;
       const extra = `<div class="stack" style="width:100%"><span class="eyebrow">Maneno ya raundi</span><ul class="wordlist">${log.map(x => `<li class="${x.ok ? '' : 'p'}">${x.ok ? I.check : I.skip}${esc(x.w)}</li>`).join('') || '<li class="p">Hakuna neno lililochezwa</li>'}</ul></div>`;
       go(scrResults, { mode: 'heads', practice, score: practice ? 0 : correct * 60, correct, total: log.length, best: correct, win: correct >= (practice ? 2 : 5), extra, again: () => go(scrHeadsReady, deck, practice) });
@@ -594,12 +622,14 @@
     let ro = null;
     if (window.ResizeObserver) { ro = new ResizeObserver(size); ro.observe(canvas); addCleanup(() => ro.disconnect()); } else size();
     const bar = $('#tbar'), tm = $('#timer');
-    let ended = false;
-    const stop = countdown(T, left => { bar.style.width = (left / T * 100) + '%'; tm.classList.toggle('low', left < 10000); $('#secs').textContent = Math.ceil(left / 1000); }, () => endTurn(false, true));
+    let ended = false, warned = false;
+    say('chora');
+    const stop = countdown(T, left => { bar.style.width = (left / T * 100) + '%'; tm.classList.toggle('low', left < 10000); $('#secs').textContent = Math.ceil(left / 1000); if (left < 10000 && !warned) { warned = true; say('sekunde_kumi'); } }, () => endTurn(false, true));
     $('#got').addEventListener('click', () => endTurn(true));
     $('#pass').addEventListener('click', () => endTurn(false));
     function endTurn(ok, timeout) {
       if (ended) return; ended = true; stop();
+      say(ok ? 'wamepata' : timeout ? 'muda' : 'pita');
       if (ok) team.score++;
       G.log = G.log || []; G.log.push({ team: team.name, w: word.word, ok });
       G.turn++; G.w++;
@@ -647,6 +677,8 @@
       else if (r.again) r.again(); else MODES[r.mode].start(false);
     });
     if (r.win) confetti();
+    say(r.win ? 'ushindi' : 'jaribu_tena', 900);
+    if (dayUp) say('mfululizo', 3200);
   }
 
   /* ---------- league ---------- */
@@ -673,6 +705,8 @@
     app.innerHTML = `${ART.band()}<div class="screen">
       <div class="celebrate calm" style="padding-top:0">${avatar(p, 'av big')}<h1 class="h1">${esc(p.name)}</h1><span class="lvl">${levelName(p.level)}</span></div>
       <button class="btn ghost block" id="chav">${I.camera} Badilisha avatar au selfie</button>
+      <button class="btn ghost block" id="snd" aria-pressed="${S.sound !== false}">${I.speaker} ${S.sound !== false ? 'Sauti: imewashwa' : 'Sauti: imezimwa'}</button>
+      ${HAS_AUDIO.size ? '' : '<p class="fine">Sauti za mchezo zinakuja hivi karibuni.</p>'}
       <div class="stats">
         <div class="stat"><b>${fmt(S.points)}</b><span>Pointi</span></div>
         <div class="stat"><b>${liveStreak()}</b><span>Siku mfululizo</span></div>
@@ -686,6 +720,11 @@
       <div id="danger" class="stack"><button class="link" id="wipe">Futa data yangu na uanze upya</button></div>
     </div>${nav('profile')}`;
     $('#chav').addEventListener('click', () => go(scrAvatar, true));
+    $('#snd').addEventListener('click', () => {
+      S.sound = S.sound === false; save();
+      const b = $('#snd'); b.setAttribute('aria-pressed', String(S.sound)); b.innerHTML = `${I.speaker} ${S.sound ? 'Sauti: imewashwa' : 'Sauti: imezimwa'}`;
+      say(RIGHT);
+    });
     $$('input[name="lvl"]').forEach(r => r.addEventListener('change', () => { S.profile.level = r.value; save(); }));
     $('#wipe').addEventListener('click', () => {
       $('#danger').innerHTML = `<div class="confirm"><b>Futa kila kitu?</b><span>Pointi, mfululizo, selfie na wasifu wako vitafutwa kwenye kifaa hiki.</span><div class="btns"><button class="btn ghost small" id="no">Hapana</button><button class="btn small" id="yes">Ndiyo, futa</button></div></div>`;
