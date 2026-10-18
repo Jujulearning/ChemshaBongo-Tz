@@ -208,9 +208,14 @@ img.av{object-fit:cover}
 
 /* mazao */
 .crop{position:relative;background:var(--leaf-tint);border-radius:var(--r-lg);display:grid;place-items:center;padding:14px;overflow:hidden}
-.crop svg{width:min(230px,66%);height:auto;transition:filter .6s ease, transform .7s cubic-bezier(.2,.8,.2,1)}
-.crop.wilt svg{filter:grayscale(1) sepia(.5) brightness(.9) !important;transform:rotate(-9deg) translateY(12px) scale(.95)}
-.crop.win svg{animation:sway 1.2s ease-in-out 2}
+.crop .crop-art{width:min(230px,66%);height:auto;transition:filter .6s ease, transform .7s cubic-bezier(.2,.8,.2,1)}
+.crop.has-photo{padding:0}
+.crop.has-photo .crop-art{width:100%;height:auto;aspect-ratio:4 / 3;max-height:320px;object-fit:cover;display:block}
+.crop.wilt .crop-art{filter:grayscale(1) sepia(.5) brightness(.9) !important;transform:rotate(-9deg) translateY(12px) scale(.95)}
+.crop.has-photo.wilt .crop-art{transform:scale(.97)}
+.crop.win .crop-art{animation:sway 1.2s ease-in-out 2}
+.crop.has-photo.win .crop-art{animation:bump .6s ease-in-out 1}
+.crop.has-photo .drops{background:rgba(255,255,255,.85);border-radius:999px;padding:4px 8px}
 .drops{position:absolute;right:14px;top:12px;display:flex;gap:3px}
 .drops svg{width:18px;height:22px;color:var(--sky-deep);transition:opacity .3s, transform .3s}
 .drops .gone{opacity:.2;transform:scale(.6)}

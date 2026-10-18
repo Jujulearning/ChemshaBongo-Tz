@@ -109,7 +109,7 @@
       start: p => startQuiz('geo', p)
     },
     mazao: {
-      name: 'Mazao', en: 'Guess the crop', cls: 'm-mazao', art: () => ART.crop('alizeti'),
+      name: 'Mazao', en: 'Guess the crop', cls: 'm-mazao', art: () => '<img src="img/crops/alizeti.jpg" alt="" style="width:100%;height:100%;object-fit:cover;display:block">',
       steps: ['Tazama picha ya zao. Kwa Mjanja na Dingi, picha imefifia kidogo.', 'Bonyeza herufi kukisia jina la zao. Kila herufi sahihi inaifanya picha iwe wazi zaidi.', 'Una matone 6 ya maji. Ukikosa yote, mmea unakauka!', 'Dokezo: linalimwa wapi, na linajulikana kwa nini. Kila dokezo ni pointi 20.'],
       enSum: 'Hangman with crops: look at the picture and guess its Swahili name letter by letter. Mjanja and Dingi pictures start slightly blurred. Hints tell you where it grows and what it is used for.',
       start: p => startMazao(p)
@@ -382,7 +382,7 @@
     app.innerHTML = `${ART.band()}<div class="screen">
       ${topbar(G, G.practice ? 'Mazoezi' : `Zao ${G.i + 1} / ${G.items.length}`)}
       ${dotsHTML(G)}
-      <div class="crop" id="crop">${ART.crop(c.id)}<div class="drops" id="drops" aria-label="Matone ya maji yaliyobaki">${Array.from({ length: R.max }, () => I.drop).join('')}</div></div>
+      <div class="crop ${c.photo ? 'has-photo' : ''}" id="crop">${c.photo ? `<img class="crop-art" src="${esc(c.photo)}" alt="Picha ya zao la kukisia" width="720" height="720">` : ART.crop(c.id).replace('<svg ', '<svg class="crop-art" ')}<div class="drops" id="drops" aria-label="Matone ya maji yaliyobaki">${Array.from({ length: R.max }, () => I.drop).join('')}</div></div>
       <div class="slots" id="slots" aria-live="polite">${word.split('').map(() => '<span class="slot"></span>').join('')}</div>
       <div class="hints">
         <button class="hint" id="h-wapi">Linalimwa wapi? <span>Dokezo · −20</span></button>
@@ -391,7 +391,7 @@
       <div class="kbd" id="kbd">${LETTERS.map(l => `<button class="key" data-k="${l}" aria-label="Herufi ${l}">${l}</button>`).join('')}</div>
       <div id="foot" class="stack"></div>
     </div>`;
-    const svg = $('#crop svg');
+    const svg = $('#crop .crop-art');
     function paint() {
       const slots = $$('.slot');
       word.split('').forEach((ch, k) => { if (R.got.has(ch) && !slots[k].textContent) { slots[k].textContent = ch; slots[k].classList.add('show'); } });

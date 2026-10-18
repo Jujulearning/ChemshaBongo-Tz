@@ -1,55 +1,133 @@
 {
   "version": 1,
   "mode": "mazao",
-  "notes": "Crop guessing game (hangman style). 'word' is what the player spells. Hints: 'wapi' = where it is grown in Tanzania, 'nini' = what it is popular for. Have an agronomist or Tanzanian editor confirm growing regions before launch.",
+  "notes": "Crop guessing game (hangman style). 'word' is what the player spells. Hints: 'wapi' = where it is grown in Tanzania, 'nini' = what it is popular for. Have an agronomist or Tanzanian editor confirm growing regions before launch. 'photo' is relative to app/; crops without one use the built-in drawing. Photos supplied by the team from free-licence libraries; record each photographer in data/credits.md.",
   "crops": [
-    { "id": "mahindi", "word": "MAHINDI", "en": "maize", "level": "chipukizi",
+    {
+      "id": "mahindi",
+      "word": "MAHINDI",
+      "en": "maize",
+      "level": "chipukizi",
       "wapi": "Hulimwa karibu kila mkoa; mikoa mikubwa ni Ruvuma, Mbeya, Rukwa na Iringa.",
       "nini": "Unga wake hupikwa ugali, chakula kikuu cha Watanzania wengi.",
-      "en_fact": "Grown almost everywhere; its flour makes ugali." },
-    { "id": "ndizi", "word": "NDIZI", "en": "banana", "level": "chipukizi",
+      "en_fact": "Grown almost everywhere; its flour makes ugali.",
+      "photo": "img/crops/mahindi.jpg"
+    },
+    {
+      "id": "ndizi",
+      "word": "NDIZI",
+      "en": "banana",
+      "level": "chipukizi",
       "wapi": "Kagera, Kilimanjaro, Mbeya na Arusha.",
       "nini": "Hupikwa kama ndizi nyama au matoke, na huliwa zikiwa mbivu.",
-      "en_fact": "Cooked as ndizi nyama or matoke, or eaten ripe." },
-    { "id": "nazi", "word": "NAZI", "en": "coconut", "level": "chipukizi",
+      "en_fact": "Cooked as ndizi nyama or matoke, or eaten ripe.",
+      "photo": "img/crops/ndizi.jpg"
+    },
+    {
+      "id": "nazi",
+      "word": "NAZI",
+      "en": "coconut",
+      "level": "chipukizi",
       "wapi": "Pwani: Tanga, Pwani, Dar es Salaam, Lindi, Mtwara na Zanzibar.",
       "nini": "Tui lake hupika wali wa nazi na mchuzi wa samaki.",
-      "en_fact": "Coconut milk cooks wali wa nazi and fish curry." },
-    { "id": "chai", "word": "CHAI", "en": "tea", "level": "chipukizi",
+      "en_fact": "Coconut milk cooks wali wa nazi and fish curry.",
+      "photo": "img/crops/nazi.jpg"
+    },
+    {
+      "id": "chai",
+      "word": "CHAI",
+      "en": "tea",
+      "level": "chipukizi",
       "wapi": "Iringa (Mufindi), Njombe, Mbeya (Rungwe) na Tanga (Lushoto).",
       "nini": "Majani yake hutengeneza kinywaji cha kila asubuhi, chai ya maziwa au ya rangi.",
-      "en_fact": "Highland crop behind the everyday cup of chai." },
-    { "id": "kahawa", "word": "KAHAWA", "en": "coffee", "level": "mjanja",
+      "en_fact": "Highland crop behind the everyday cup of chai.",
+      "photo": "img/crops/chai.jpg"
+    },
+    {
+      "id": "kahawa",
+      "word": "KAHAWA",
+      "en": "coffee",
+      "level": "mjanja",
       "wapi": "Kilimanjaro, Kagera, Mbeya, Songwe na Ruvuma.",
       "nini": "Kahawa ya miteremko ya Kilimanjaro inauzwa duniani kote.",
-      "en_fact": "A major export, famous from Kilimanjaro's slopes." },
-    { "id": "pamba", "word": "PAMBA", "en": "cotton", "level": "mjanja",
+      "en_fact": "A major export, famous from Kilimanjaro's slopes."
+    },
+    {
+      "id": "pamba",
+      "word": "PAMBA",
+      "en": "cotton",
+      "level": "mjanja",
       "wapi": "Kanda ya Ziwa: Shinyanga, Simiyu, Mwanza na Geita.",
       "nini": "Nyuzi zake hutengeneza vitambaa, kanga na nguo.",
-      "en_fact": "Lake Zone crop; its fibre becomes cloth and kanga." },
-    { "id": "mpunga", "word": "MPUNGA", "en": "rice (plant)", "level": "mjanja",
+      "en_fact": "Lake Zone crop; its fibre becomes cloth and kanga.",
+      "photo": "img/crops/pamba.jpg"
+    },
+    {
+      "id": "mpunga",
+      "word": "MPUNGA",
+      "en": "rice (plant)",
+      "level": "mjanja",
       "wapi": "Morogoro (Kilombero), Mbeya (Kyela na Mbarali) na Shinyanga.",
       "nini": "Hukobolewa kuwa mchele wa wali. Mchele wa Kyela ni maarufu.",
-      "en_fact": "Husked into rice; Kyela rice is well known." },
-    { "id": "muhogo", "word": "MUHOGO", "en": "cassava", "level": "mjanja",
+      "en_fact": "Husked into rice; Kyela rice is well known."
+    },
+    {
+      "id": "muhogo",
+      "word": "MUHOGO",
+      "en": "cassava",
+      "level": "mjanja",
       "wapi": "Mtwara, Lindi, Tanga, Pwani na Kanda ya Ziwa.",
       "nini": "Huchomwa, hupikwa au husagwa kuwa unga. Majani yake ni kisamvu.",
-      "en_fact": "Roasted, boiled or milled; the leaves are kisamvu." },
-    { "id": "alizeti", "word": "ALIZETI", "en": "sunflower", "level": "mjanja",
+      "en_fact": "Roasted, boiled or milled; the leaves are kisamvu.",
+      "photo": "img/crops/muhogo.jpg"
+    },
+    {
+      "id": "alizeti",
+      "word": "ALIZETI",
+      "en": "sunflower",
+      "level": "mjanja",
       "wapi": "Singida, Dodoma na Manyara.",
       "nini": "Mbegu zake hukamuliwa mafuta ya kupikia.",
-      "en_fact": "Pressed for cooking oil in central Tanzania." },
-    { "id": "korosho", "word": "KOROSHO", "en": "cashew", "level": "dingi",
+      "en_fact": "Pressed for cooking oil in central Tanzania.",
+      "photo": "img/crops/alizeti.jpg"
+    },
+    {
+      "id": "korosho",
+      "word": "KOROSHO",
+      "en": "cashew",
+      "level": "dingi",
       "wapi": "Mtwara na Lindi, pamoja na Pwani na Ruvuma.",
       "nini": "Zao kubwa la biashara la kusini; Tanzania ni mmoja wa wazalishaji wakubwa Afrika.",
-      "en_fact": "The south's big cash crop; a major African producer." },
-    { "id": "karafuu", "word": "KARAFUU", "en": "cloves", "level": "dingi",
+      "en_fact": "The south's big cash crop; a major African producer.",
+      "photo": "img/crops/korosho.jpg"
+    },
+    {
+      "id": "karafuu",
+      "word": "KARAFUU",
+      "en": "cloves",
+      "level": "dingi",
       "wapi": "Pemba na Unguja, Zanzibar.",
       "nini": "Kiungo maarufu cha Zanzibar, hutumika kwenye pilau na chai.",
-      "en_fact": "Zanzibar's famous spice, used in pilau and chai." },
-    { "id": "mkonge", "word": "MKONGE", "en": "sisal", "level": "dingi",
+      "en_fact": "Zanzibar's famous spice, used in pilau and chai."
+    },
+    {
+      "id": "mkonge",
+      "word": "MKONGE",
+      "en": "sisal",
+      "level": "dingi",
       "wapi": "Tanga, Morogoro na Kilimanjaro.",
       "nini": "Nyuzi zake hutengeneza kamba, magunia na mazulia.",
-      "en_fact": "Its fibre makes rope, sacks and mats." }
+      "en_fact": "Its fibre makes rope, sacks and mats."
+    },
+    {
+      "id": "fenesi",
+      "word": "FENESI",
+      "en": "jackfruit",
+      "level": "mjanja",
+      "wapi": "Hustawi maeneo ya joto na mvua: pwani ya Tanga, Pwani na Zanzibar, pamoja na Morogoro.",
+      "nini": "Ni tunda kubwa kuliko yote linalozaa mtini. Nyama yake ya njano ni tamu likiiva.",
+      "en_fact": "The biggest fruit that grows on a tree; its yellow flesh is sweet when ripe.",
+      "photo": "img/crops/fenesi.jpg"
+    }
   ]
 }
