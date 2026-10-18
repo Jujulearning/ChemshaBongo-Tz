@@ -1,0 +1,17 @@
+{
+  "version": 1,
+  "mode": "heads_up",
+  "notes": "Heads Up decks. Names of public figures are shown as text only. Add old films and TV shows once titles are checked by a local editor.",
+  "decks": [
+    { "id": "watu", "name": "Watu maarufu", "en": "Famous people",
+      "words": ["Julius Nyerere", "Abeid Karume", "Bi Kidude", "Shaaban Robert", "Mbwana Samatta", "Filbert Bayi", "Hasheem Thabeet", "Diamond Platnumz", "Ali Kiba", "Saida Karoli", "Benjamin Mkapa", "Ali Hassan Mwinyi", "Zuchu", "Harmonize"] },
+    { "id": "historia", "name": "Historia", "en": "History",
+      "words": ["Uhuru 1961", "Muungano 1964", "Vita vya Maji Maji", "Azimio la Arusha", "Mwenge wa Uhuru", "Vita vya Kagera", "Mapinduzi ya Zanzibar", "Bunge", "Chifu Mkwawa", "Bendera ya Taifa"] },
+    { "id": "maeneo", "name": "Maeneo", "en": "Places",
+      "words": ["Kariakoo", "Ngorongoro", "Mji Mkongwe", "Serengeti", "Daraja la Kigamboni", "Ziwa Victoria", "Mlima Kilimanjaro", "Bagamoyo", "Mikumi", "Ziwa Tanganyika", "Forodhani", "Ufukwe wa Coco"] },
+    { "id": "vyakula", "name": "Vyakula", "en": "Food",
+      "words": ["Ugali", "Chipsi mayai", "Mishkaki", "Wali wa nazi", "Mandazi", "Pilau", "Ndizi nyama", "Urojo", "Kachumbari", "Chapati", "Maharage", "Samaki wa kupaka"] },
+    { "id": "burudani", "name": "Burudani", "en": "Fun and culture",
+      "words": ["Taarab", "Bongo Flava", "Singeli", "Simba SC", "Yanga", "Ngoma", "Bao", "Daladala", "Bajaji", "Kanga", "Kitenge", "Mpira wa miguu"] }
+  ]
+}

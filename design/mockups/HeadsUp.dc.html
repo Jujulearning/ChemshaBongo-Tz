@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="sw">
+<head>
+<meta charset="utf-8">
+<title>Heads Up card</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..900&amp;family=Public+Sans:wght@400;500;600;700&amp;display=swap">
+<style>
+body{margin:0}
+a{color:#C2362B}a:hover{color:#8F2219}
+</style>
+</helmet>
+<div style="width: 844px; height: 390px; box-sizing: border-box; background: {{frame}}; padding: 18px; font-family: 'Public Sans', sans-serif; color: #1C1B19; overflow: hidden">
+  <div style="width: 100%; height: 100%; box-sizing: border-box; border: 2px solid #1C1B19; padding: 10px; background: repeating-linear-gradient(45deg, #1C1B19 0 4px, {{frame}} 4px 10px)">
+    <div style="width: 100%; height: 100%; box-sizing: border-box; background: #FAF7F0; border: 2px solid #1C1B19; padding: 16px 26px; display: flex; flex-direction: column">
+
+      <div style="display: flex; justify-content: space-between; align-items: center">
+        <div style="font-size: 14px; font-weight: 700">Sahihi 7 · Pita 2</div>
+        <div style="font-size: 12px; font-weight: 800; letter-spacing: 2px; text-transform: uppercase; color: #C2362B">Watu maarufu · Historia</div>
+        <div style="font-family: 'Archivo', sans-serif; font-weight: 900; font-size: 26px">0:41</div>
+      </div>
+
+      <div style="flex: 1 1 auto; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 8px; text-align: center">
+        <div style="font-family: 'Archivo', sans-serif; font-stretch: 118%; font-weight: 900; font-size: 64px; line-height: 0.95; text-transform: uppercase">Mwalimu Nyerere</div>
+        <div style="font-size: 16px; color: #5E5A52">Eleza bila kutaja jina!</div>
+      </div>
+
+      <div style="display: flex; justify-content: space-between; align-items: center; border-top: 2px solid #1C1B19; padding-top: 10px; font-size: 14px; font-weight: 700">
+        <span>↓ Inamisha chini: Sahihi</span>
+        <span style="background: #F2C230; border: 2px solid #1C1B19; padding: 4px 12px">Timu A 2 – 1 Timu B</span>
+        <span>Inua juu: Pita ↑</span>
+      </div>
+    </div>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"frame":{"editor":"color","default":"#C2362B","options":["#C2362B","#F2C230","#2A3D8F"]},"$preview":{"width":844,"height":390}}'>
+class Component extends DCLogic {
+  renderVals() {
+    return { frame: this.props.frame ?? '#C2362B' };
+  }
+}
+</script>
+</body>
+</html>
