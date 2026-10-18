@@ -28,7 +28,7 @@ A Swahili culture and language game for phones. Players finish methali, guess tr
 | 04 | **Jaza Pengo** | Fill the gaps in a short Swahili story. |
 | 05 | **Unaijua Dar?** | Geography: questions about a region ("Unaijua Iringa?"), with a hint that costs points. Players represent their mkoa in a region league. |
 | 06 | **Chora Tuone** | Pictionary: the drawer gets a Swahili word (e.g. *jokofu*, *darubini*) and draws it; guessers type the word in Swahili. Pass-and-play first, async with friends later. |
-| 07 | **Mazao** | Hangman with crops: guess letters to reveal a blurred crop picture. Six water drops; run out and the plant wilts. Hints: where in Tanzania it grows, and what it's known for. |
+| 07 | **Mazao** | Hangman with crops: guess the crop's name from its picture (clear for Chipukizi, lightly blurred for Mjanja and Dingi, sharpening with each correct letter). Six water drops; run out and the plant wilts. Hints: where in Tanzania it grows, and what it's known for. |
 | 08 | **Heads Up!** | Phone on forehead; teammates describe a famous person, film, moment or show. Tilt down for correct, up to pass. |
 
 All modes work **peke yako** (solo) or **na marafiki** (multiplayer).

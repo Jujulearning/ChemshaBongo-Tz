@@ -110,8 +110,8 @@
     },
     mazao: {
       name: 'Mazao', en: 'Guess the crop', cls: 'm-mazao', art: () => ART.crop('alizeti'),
-      steps: ['Tazama picha ya zao. Mwanzoni imefifia.', 'Bonyeza herufi kukisia jina la zao. Kila herufi sahihi inaonyesha picha zaidi.', 'Una matone 6 ya maji. Ukikosa yote, mmea unakauka!', 'Dokezo: linalimwa wapi, na linajulikana kwa nini. Kila dokezo ni pointi 20.'],
-      enSum: 'Hangman with crops: guess letters to reveal the picture. Hints tell you where it grows and what it is used for.',
+      steps: ['Tazama picha ya zao. Kwa Mjanja na Dingi, picha imefifia kidogo.', 'Bonyeza herufi kukisia jina la zao. Kila herufi sahihi inaifanya picha iwe wazi zaidi.', 'Una matone 6 ya maji. Ukikosa yote, mmea unakauka!', 'Dokezo: linalimwa wapi, na linajulikana kwa nini. Kila dokezo ni pointi 20.'],
+      enSum: 'Hangman with crops: look at the picture and guess its Swahili name letter by letter. Mjanja and Dingi pictures start slightly blurred. Hints tell you where it grows and what it is used for.',
       start: p => startMazao(p)
     },
     heads: {
@@ -396,7 +396,8 @@
       const slots = $$('.slot');
       word.split('').forEach((ch, k) => { if (R.got.has(ch) && !slots[k].textContent) { slots[k].textContent = ch; slots[k].classList.add('show'); } });
       const frac = need.filter(ch => R.got.has(ch)).length / need.length;
-      svg.style.filter = R.done ? 'none' : `blur(${(14 * (1 - frac)).toFixed(1)}px)`;
+      const startBlur = G.practice ? 0 : ({ chipukizi: 0, mjanja: 3, dingi: 6 }[S.profile.level] || 0);
+      svg.style.filter = R.done || !startBlur ? 'none' : `blur(${(startBlur * (1 - frac)).toFixed(1)}px)`;
       $$('#drops svg').forEach((d, k) => d.classList.toggle('gone', k >= R.max - R.miss.size));
     }
     function openHint(id, text) {
