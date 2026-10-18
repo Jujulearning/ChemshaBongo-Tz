@@ -23,6 +23,7 @@ js = "\n".join([
     f"const CHORA={data('chora.json')};",
     f"const MAZAO={data('mazao.json')};",
     f"const HEADSUP={data('headsup.json')};",
+    f"const WANYAMA={data('wanyama.json')};",
     (SRC / "art.js").read_text(encoding="utf-8"),
     (SRC / "app.js").read_text(encoding="utf-8"),
 ])

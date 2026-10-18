@@ -112,7 +112,13 @@
       name: 'Mazao', en: 'Guess the crop', cls: 'm-mazao', art: () => '<img src="img/crops/alizeti.jpg" alt="" style="width:100%;height:100%;object-fit:cover;display:block">',
       steps: ['Tazama picha ya zao. Kwa Mjanja na Dingi, picha imefifia kidogo.', 'Bonyeza herufi kukisia jina la zao. Kila herufi sahihi inaifanya picha iwe wazi zaidi.', 'Una matone 6 ya maji. Ukikosa yote, mmea unakauka!', 'Dokezo: linalimwa wapi, na linajulikana kwa nini. Kila dokezo ni pointi 20.'],
       enSum: 'Hangman with crops: look at the picture and guess its Swahili name letter by letter. Mjanja and Dingi pictures start slightly blurred. Hints tell you where it grows and what it is used for.',
-      start: p => startMazao(p)
+      start: p => startMazao(p, 'mazao')
+    },
+    wanyama: {
+      name: 'Wanyama', en: 'Guess the animal', cls: 'm-geo', art: () => '<img src="img/wanyama/twiga.jpg" alt="" style="width:100%;height:100%;object-fit:cover;display:block">',
+      steps: ['Tazama picha ya mnyama wa porini wa Tanzania.', 'Bonyeza herufi kukisia jina lake kwa Kiswahili.', 'Una matone 6 ya maji. Ukikosa yote, umepoteza raundi!', 'Dokezo: anapatikana wapi, na anajulikana kwa nini. Kila dokezo ni pointi 20.'],
+      enSum: 'Hangman with Tanzanian wildlife: spell the animal’s Swahili name. Hints say where to see it and what it is known for.',
+      start: p => startMazao(p, 'wanyama')
     },
     heads: {
       name: 'Heads Up!', en: 'Describe it without saying it', cls: 'm-heads', art: () => ART.thumbHeads(),
@@ -290,7 +296,7 @@
       }));
     } else {
       const flat = [];
-      GEO.places.forEach(pl => pl.questions.forEach(q => flat.push({ prompt: q.q, answer: q.options[0], options: q.options, eyebrow: `Unaijua ${pl.name}?`, level: q.level, en: q.en })));
+      GEO.places.forEach(pl => pl.questions.forEach(q => flat.push({ prompt: q.q, answer: q.options[0], options: q.options, eyebrow: `Unaijua ${pl.name}?`, level: q.level, en: q.en, photo: q.photo })));
       items = pick(flat, q => q.level, () => 0, practice ? 2 : 5, practice).map(q => Object.assign(q, {
         after: `<b class="big">Jibu: ${esc(q.answer)}</b><span class="muted">${esc(q.en)}</span>`
       }));
@@ -323,7 +329,7 @@
       ${topbar(G, `${G.i + 1} / ${G.items.length}`)}
       ${dotsHTML(G)}
       ${G.practice ? '<span class="tag">Mazoezi · hakuna saa wala pointi</span>' : '<div class="timer" id="timer" aria-hidden="true"><i id="tbar"></i></div>'}
-      ${G.kind === 'geo' ? `<div class="scene">${ART.mountains()}<span class="scene-label">${esc(q.eyebrow)}</span></div>` : ''}
+      ${G.kind === 'geo' ? `<div class="scene">${q.photo ? `<img class="scene-photo" src="${esc(q.photo)}" alt="Picha ya mahali" width="720" height="480">` : ART.mountains()}<span class="scene-label">${esc(q.eyebrow)}</span></div>` : ''}
       <div class="qcard" id="qcard"><span class="eyebrow">${G.kind === 'methali' ? 'Malizia methali' : 'Jiografia'}</span><p class="qtext">${promptHTML}</p></div>
       <div class="opts" id="opts">${opts.map((o, k) => `<button class="opt" style="--i:${k}" data-o="${esc(o)}"><span>${esc(o)}</span></button>`).join('')}</div>
       <div id="qfoot" class="stack"><button class="link" id="hint">Ondoa majibu mawili (−20)</button></div>
@@ -372,21 +378,27 @@
 
   /* ---------- mazao (hangman) ---------- */
   const LETTERS = 'ABCDEFGHIJKLMNOPRSTUVWYZ'.split('');
-  function startMazao(practice) {
-    const items = practice ? MAZAO.crops.filter(c => c.id === 'ndizi') : pick(MAZAO.crops, c => c.level, () => 0, 3, false);
-    go(renderCrop, { kind: 'mazao', mode: 'mazao', practice, items, i: 0, score: 0, correct: 0, streak: 0, best: 0, results: [] });
+  const HANG = {
+    mazao: { list: () => MAZAO.crops, practiceId: 'ndizi', unit: 'Zao', next: 'Zao linalofuata', h1: 'Linalimwa wapi?', h2: 'Linajulikana kwa nini?', lose: 'Mmea umekauka!' },
+    wanyama: { list: () => WANYAMA.animals, practiceId: 'simba', unit: 'Mnyama', next: 'Mnyama anayefuata', h1: 'Anapatikana wapi?', h2: 'Anajulikana kwa nini?', lose: 'Matone yameisha!' }
+  };
+  function startMazao(practice, kind) {
+    kind = kind || 'mazao'; const cfg = HANG[kind];
+    const items = practice ? cfg.list().filter(c => c.id === cfg.practiceId) : pick(cfg.list(), c => c.level, () => 0, 3, false);
+    go(renderCrop, { kind, mode: kind, practice, items, i: 0, score: 0, correct: 0, streak: 0, best: 0, results: [] });
   }
   function renderCrop(G) {
+    const cfg = HANG[G.mode];
     const c = G.items[G.i], word = c.word, need = Array.from(new Set(word.split('')));
     const R = { got: new Set(), miss: new Set(), max: 6, hints: 0, done: false };
     app.innerHTML = `${ART.band()}<div class="screen">
-      ${topbar(G, G.practice ? 'Mazoezi' : `Zao ${G.i + 1} / ${G.items.length}`)}
+      ${topbar(G, G.practice ? 'Mazoezi' : `${cfg.unit} ${G.i + 1} / ${G.items.length}`)}
       ${dotsHTML(G)}
-      <div class="crop ${c.photo ? 'has-photo' : ''}" id="crop">${c.photo ? `<img class="crop-art" src="${esc(c.photo)}" alt="Picha ya zao la kukisia" width="720" height="720">` : ART.crop(c.id).replace('<svg ', '<svg class="crop-art" ')}<div class="drops" id="drops" aria-label="Matone ya maji yaliyobaki">${Array.from({ length: R.max }, () => I.drop).join('')}</div></div>
+      <div class="crop ${c.photo ? 'has-photo' : ''}" id="crop">${c.photo ? `<img class="crop-art" src="${esc(c.photo)}" alt="Picha ya kukisia" width="720" height="720">` : ART.crop(c.id).replace('<svg ', '<svg class="crop-art" ')}<div class="drops" id="drops" aria-label="Matone ya maji yaliyobaki">${Array.from({ length: R.max }, () => I.drop).join('')}</div></div>
       <div class="slots" id="slots" aria-live="polite">${word.split('').map(() => '<span class="slot"></span>').join('')}</div>
       <div class="hints">
-        <button class="hint" id="h-wapi">Linalimwa wapi? <span>Dokezo · −20</span></button>
-        <button class="hint" id="h-nini">Linajulikana kwa nini? <span>Dokezo · −20</span></button>
+        <button class="hint" id="h-wapi">${cfg.h1} <span>Dokezo · −20</span></button>
+        <button class="hint" id="h-nini">${cfg.h2} <span>Dokezo · −20</span></button>
       </div>
       <div class="kbd" id="kbd">${LETTERS.map(l => `<button class="key" data-k="${l}" aria-label="Herufi ${l}">${l}</button>`).join('')}</div>
       <div id="foot" class="stack"></div>
@@ -428,9 +440,9 @@
       } else G.streak = 0;
       popStreak(G); G.results.push(won);
       const last = G.i === G.items.length - 1;
-      $('#foot').innerHTML = `<div class="feedback ${won ? '' : 'bad'}"><b class="big">${won ? `Safi! Ni ${c.word.toLowerCase()}.` : `Mmea umekauka! Jibu: ${c.word.toLowerCase()}.`}</b><span><b>Wapi:</b> ${esc(c.wapi)}</span><span><b>Kwa nini:</b> ${esc(c.nini)}</span><span class="muted">${esc(c.en)}: ${esc(c.en_fact)}</span></div><button class="btn block" id="next">${last ? 'Ona matokeo' : 'Zao linalofuata'}</button>`;
+      $('#foot').innerHTML = `<div class="feedback ${won ? '' : 'bad'}"><b class="big">${won ? `Safi! Ni ${c.word.toLowerCase()}.` : `${cfg.lose} Jibu: ${c.word.toLowerCase()}.`}</b><span><b>Wapi:</b> ${esc(c.wapi)}</span><span><b>Kwa nini:</b> ${esc(c.nini)}</span><span class="muted">${esc(c.en)}: ${esc(c.en_fact)}</span></div><button class="btn block" id="next">${last ? 'Ona matokeo' : cfg.next}</button>`;
       $('#next').addEventListener('click', () => {
-        if (last) go(scrResults, { mode: 'mazao', practice: G.practice, score: G.score, correct: G.correct, total: G.items.length, best: G.best, win: G.correct >= Math.ceil(G.items.length * .6) });
+        if (last) go(scrResults, { mode: G.mode, practice: G.practice, score: G.score, correct: G.correct, total: G.items.length, best: G.best, win: G.correct >= Math.ceil(G.items.length * .6) });
         else { G.i++; go(renderCrop, G); }
       });
     }

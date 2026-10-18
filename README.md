@@ -6,7 +6,7 @@
 
 What's in it:
 - **Onboarding**: preferred name, email, age (required; under 13 needs parent or guardian consent), level (Chipukizi, Mjanja, Dingi), and an avatar or selfie. The selfie is resized and kept on the device only.
-- **Playable modes**: Malizia Methali, Unaijua Dar?, Mazao (crop hangman), Heads Up!, Chora Tuone.
+- **Playable modes**: Malizia Methali, Unaijua Dar?, Mazao (crop hangman), Wanyama (animal hangman), Heads Up!, Chora Tuone.
 - **How to play + practice round** for every mode. The first time a tester taps a mode, the instructions open first.
 - **Streaks**: a daily streak (play once a day to keep it) and an in-round streak that adds bonus points.
 - **Celebrations**: confetti and the player's avatar or selfie on a win.
@@ -29,6 +29,7 @@ A Swahili culture and language game for phones. Players finish methali, guess tr
 | 05 | **Unaijua Dar?** | Geography: questions about a region ("Unaijua Iringa?"), with a hint that costs points. Players represent their mkoa in a region league. |
 | 06 | **Chora Tuone** | Pictionary: the drawer gets a Swahili word (e.g. *jokofu*, *darubini*) and draws it; guessers type the word in Swahili. Pass-and-play first, async with friends later. |
 | 07 | **Mazao** | Hangman with crops: guess the crop's name from its picture (clear for Chipukizi, lightly blurred for Mjanja and Dingi, sharpening with each correct letter). Six water drops; run out and the plant wilts. Hints: where in Tanzania it grows, and what it's known for. |
+| 09 | **Wanyama** | Same as Mazao with Tanzanian wildlife photos (simba, twiga, kiboko, nyani, pundamilia, fisi, mamba). Hints: where to see it, and what it's known for. |
 | 08 | **Heads Up!** | Phone on forehead; teammates describe a famous person, film, moment or show. Tilt down for correct, up to pass. |
 
 All modes work **peke yako** (solo) or **na marafiki** (multiplayer).
@@ -65,6 +66,8 @@ data/jiografia.json   Seed questions for Unaijua (12 places, 18 questions)
 data/chora.json       Drawing words for Chora Tuone (34 words by level)
 data/mazao.json       Crops for the Mazao game, with where they grow and what they're known for
 data/headsup.json     Heads Up decks (famous people, history, places, food, culture)
+data/wanyama.json     Animals for the Wanyama game
+data/credits.md       Photo credits to fill in
 app/index.html        Playable beta (built file)
 app/src/              Beta source: style.css, art.js (illustrations), app.js (screens and games)
 app/build.py          Bundles src + data into app/index.html

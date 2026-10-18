@@ -1,96 +1,289 @@
 {
   "version": 1,
   "mode": "unaijua",
-  "notes": "Questions are grouped by place. 'options' always has the correct answer first; shuffle in the app. Facts should be re-checked by a Tanzanian editor before launch, especially administrative boundaries, which change.",
+  "notes": "Questions are grouped by place. 'options' always has the correct answer first; shuffle in the app. Facts should be re-checked by a Tanzanian editor before launch, especially administrative boundaries, which change. Optional 'photo' (relative to app/) replaces the drawn mountain scene.",
   "places": [
     {
       "name": "Dar es Salaam",
       "zone": "Pwani",
       "questions": [
-        { "q": "Soko kubwa maarufu la Dar es Salaam ni lipi?", "options": ["Kariakoo", "Kilombero", "Mlango Mmoja", "Majengo"], "level": "chipukizi", "en": "What is Dar es Salaam's famous big market?" },
-        { "q": "Makao makuu ya serikali yalihamia Dodoma kutoka mji gani?", "options": ["Dar es Salaam", "Tanga", "Arusha", "Morogoro"], "level": "mjanja", "en": "The seat of government moved to Dodoma from which city?" }
+        {
+          "q": "Soko kubwa maarufu la Dar es Salaam ni lipi?",
+          "options": [
+            "Kariakoo",
+            "Kilombero",
+            "Mlango Mmoja",
+            "Majengo"
+          ],
+          "level": "chipukizi",
+          "en": "What is Dar es Salaam's famous big market?"
+        },
+        {
+          "q": "Makao makuu ya serikali yalihamia Dodoma kutoka mji gani?",
+          "options": [
+            "Dar es Salaam",
+            "Tanga",
+            "Arusha",
+            "Morogoro"
+          ],
+          "level": "mjanja",
+          "en": "The seat of government moved to Dodoma from which city?"
+        }
       ]
     },
     {
       "name": "Kilimanjaro",
       "zone": "Kaskazini",
       "questions": [
-        { "q": "Mlima mrefu zaidi barani Afrika uko mkoa gani?", "options": ["Kilimanjaro", "Arusha", "Tanga", "Mbeya"], "level": "chipukizi", "en": "Africa's highest mountain is in which region?" },
-        { "q": "Makao makuu ya mkoa wa Kilimanjaro ni mji gani?", "options": ["Moshi", "Arusha", "Same", "Hai"], "level": "mjanja", "en": "What is the regional capital of Kilimanjaro?" }
+        {
+          "q": "Mlima mrefu zaidi barani Afrika uko mkoa gani?",
+          "options": [
+            "Kilimanjaro",
+            "Arusha",
+            "Tanga",
+            "Mbeya"
+          ],
+          "level": "chipukizi",
+          "en": "Africa's highest mountain is in which region?"
+        },
+        {
+          "q": "Makao makuu ya mkoa wa Kilimanjaro ni mji gani?",
+          "options": [
+            "Moshi",
+            "Arusha",
+            "Same",
+            "Hai"
+          ],
+          "level": "mjanja",
+          "en": "What is the regional capital of Kilimanjaro?"
+        }
       ]
     },
     {
       "name": "Iringa",
       "zone": "Nyanda za Juu Kusini",
       "questions": [
-        { "q": "Chifu gani wa Wahehe alipigana na Wajerumani?", "options": ["Mkwawa", "Mirambo", "Kinjikitile", "Isike"], "level": "mjanja", "en": "Which Hehe chief fought the Germans?" },
-        { "q": "Hifadhi ya Taifa ya Ruaha iko karibu na mji gani?", "options": ["Iringa", "Moshi", "Tanga", "Musoma"], "level": "mjanja", "en": "Ruaha National Park is near which town?" }
+        {
+          "q": "Chifu gani wa Wahehe alipigana na Wajerumani?",
+          "options": [
+            "Mkwawa",
+            "Mirambo",
+            "Kinjikitile",
+            "Isike"
+          ],
+          "level": "mjanja",
+          "en": "Which Hehe chief fought the Germans?"
+        },
+        {
+          "q": "Hifadhi ya Taifa ya Ruaha iko karibu na mji gani?",
+          "options": [
+            "Iringa",
+            "Moshi",
+            "Tanga",
+            "Musoma"
+          ],
+          "level": "mjanja",
+          "en": "Ruaha National Park is near which town?"
+        }
       ]
     },
     {
       "name": "Arusha",
       "zone": "Kaskazini",
       "questions": [
-        { "q": "Mlima Meru uko mkoa gani?", "options": ["Arusha", "Kilimanjaro", "Manyara", "Mbeya"], "level": "chipukizi", "en": "Mount Meru is in which region?" },
-        { "q": "Azimio la Arusha lilitangazwa mwaka gani?", "options": ["1967", "1961", "1964", "1977"], "level": "dingi", "en": "In what year was the Arusha Declaration made?" }
+        {
+          "q": "Mlima Meru uko mkoa gani?",
+          "options": [
+            "Arusha",
+            "Kilimanjaro",
+            "Manyara",
+            "Mbeya"
+          ],
+          "level": "chipukizi",
+          "en": "Mount Meru is in which region?",
+          "photo": "img/jiografia/meru.jpg"
+        },
+        {
+          "q": "Azimio la Arusha lilitangazwa mwaka gani?",
+          "options": [
+            "1967",
+            "1961",
+            "1964",
+            "1977"
+          ],
+          "level": "dingi",
+          "en": "In what year was the Arusha Declaration made?"
+        },
+        {
+          "q": "Bonde la Ngorongoro liko mkoa gani?",
+          "options": [
+            "Arusha",
+            "Mara",
+            "Manyara",
+            "Kilimanjaro"
+          ],
+          "level": "mjanja",
+          "en": "The Ngorongoro Crater is in which region?",
+          "photo": "img/jiografia/ngorongoro.jpg"
+        }
       ]
     },
     {
       "name": "Dodoma",
       "zone": "Kati",
       "questions": [
-        { "q": "Bunge la Tanzania liko mji gani?", "options": ["Dodoma", "Dar es Salaam", "Arusha", "Morogoro"], "level": "chipukizi", "en": "Tanzania's parliament sits in which city?" }
+        {
+          "q": "Bunge la Tanzania liko mji gani?",
+          "options": [
+            "Dodoma",
+            "Dar es Salaam",
+            "Arusha",
+            "Morogoro"
+          ],
+          "level": "chipukizi",
+          "en": "Tanzania's parliament sits in which city?"
+        }
       ]
     },
     {
       "name": "Mwanza",
       "zone": "Ziwa",
       "questions": [
-        { "q": "Mwanza iko kando ya ziwa gani?", "options": ["Ziwa Victoria", "Ziwa Tanganyika", "Ziwa Nyasa", "Ziwa Rukwa"], "level": "chipukizi", "en": "Mwanza is on the shore of which lake?" }
+        {
+          "q": "Mwanza iko kando ya ziwa gani?",
+          "options": [
+            "Ziwa Victoria",
+            "Ziwa Tanganyika",
+            "Ziwa Nyasa",
+            "Ziwa Rukwa"
+          ],
+          "level": "chipukizi",
+          "en": "Mwanza is on the shore of which lake?"
+        }
       ]
     },
     {
       "name": "Zanzibar (Unguja)",
       "zone": "Visiwani",
       "questions": [
-        { "q": "Mji Mkongwe (Stone Town) uko kisiwa gani?", "options": ["Unguja", "Pemba", "Mafia", "Kilwa Kisiwani"], "level": "chipukizi", "en": "Stone Town is on which island?" },
-        { "q": "Zanzibar inajulikana kwa zao gani la viungo?", "options": ["Karafuu", "Kahawa", "Pamba", "Chai"], "level": "mjanja", "en": "Zanzibar is famous for which spice crop?" }
+        {
+          "q": "Mji Mkongwe (Stone Town) uko kisiwa gani?",
+          "options": [
+            "Unguja",
+            "Pemba",
+            "Mafia",
+            "Kilwa Kisiwani"
+          ],
+          "level": "chipukizi",
+          "en": "Stone Town is on which island?"
+        },
+        {
+          "q": "Zanzibar inajulikana kwa zao gani la viungo?",
+          "options": [
+            "Karafuu",
+            "Kahawa",
+            "Pamba",
+            "Chai"
+          ],
+          "level": "mjanja",
+          "en": "Zanzibar is famous for which spice crop?"
+        }
       ]
     },
     {
       "name": "Kigoma",
       "zone": "Magharibi",
       "questions": [
-        { "q": "Hifadhi ya sokwe ya Gombe iko mkoa gani?", "options": ["Kigoma", "Mara", "Rukwa", "Katavi"], "level": "mjanja", "en": "Gombe chimpanzee park is in which region?" },
-        { "q": "Stanley alikutana na Livingstone mahali gani?", "options": ["Ujiji", "Tabora", "Bagamoyo", "Kilwa"], "level": "dingi", "en": "Where did Stanley meet Livingstone?" }
+        {
+          "q": "Hifadhi ya sokwe ya Gombe iko mkoa gani?",
+          "options": [
+            "Kigoma",
+            "Mara",
+            "Rukwa",
+            "Katavi"
+          ],
+          "level": "mjanja",
+          "en": "Gombe chimpanzee park is in which region?"
+        },
+        {
+          "q": "Stanley alikutana na Livingstone mahali gani?",
+          "options": [
+            "Ujiji",
+            "Tabora",
+            "Bagamoyo",
+            "Kilwa"
+          ],
+          "level": "dingi",
+          "en": "Where did Stanley meet Livingstone?"
+        }
       ]
     },
     {
       "name": "Tanga",
       "zone": "Kaskazini Mashariki",
       "questions": [
-        { "q": "Mapango ya Amboni yako mkoa gani?", "options": ["Tanga", "Morogoro", "Lindi", "Pwani"], "level": "mjanja", "en": "The Amboni Caves are in which region?" }
+        {
+          "q": "Mapango ya Amboni yako mkoa gani?",
+          "options": [
+            "Tanga",
+            "Morogoro",
+            "Lindi",
+            "Pwani"
+          ],
+          "level": "mjanja",
+          "en": "The Amboni Caves are in which region?"
+        }
       ]
     },
     {
       "name": "Lindi",
       "zone": "Kusini",
       "questions": [
-        { "q": "Magofu ya Kilwa Kisiwani yako mkoa gani?", "options": ["Lindi", "Mtwara", "Pwani", "Tanga"], "level": "dingi", "en": "The Kilwa Kisiwani ruins are in which region?" }
+        {
+          "q": "Magofu ya Kilwa Kisiwani yako mkoa gani?",
+          "options": [
+            "Lindi",
+            "Mtwara",
+            "Pwani",
+            "Tanga"
+          ],
+          "level": "dingi",
+          "en": "The Kilwa Kisiwani ruins are in which region?"
+        }
       ]
     },
     {
       "name": "Morogoro",
       "zone": "Mashariki",
       "questions": [
-        { "q": "Milima ya Uluguru iko mkoa gani?", "options": ["Morogoro", "Iringa", "Tanga", "Mbeya"], "level": "mjanja", "en": "The Uluguru Mountains are in which region?" }
+        {
+          "q": "Milima ya Uluguru iko mkoa gani?",
+          "options": [
+            "Morogoro",
+            "Iringa",
+            "Tanga",
+            "Mbeya"
+          ],
+          "level": "mjanja",
+          "en": "The Uluguru Mountains are in which region?"
+        }
       ]
     },
     {
       "name": "Serengeti",
       "zone": "Kaskazini",
       "questions": [
-        { "q": "Serengeti inajulikana duniani kwa msafara wa mnyama gani?", "options": ["Nyumbu", "Tembo", "Twiga", "Kiboko"], "level": "chipukizi", "en": "Serengeti is world-famous for the migration of which animal?" }
+        {
+          "q": "Serengeti inajulikana duniani kwa msafara wa mnyama gani?",
+          "options": [
+            "Nyumbu",
+            "Tembo",
+            "Twiga",
+            "Kiboko"
+          ],
+          "level": "chipukizi",
+          "en": "Serengeti is world-famous for the migration of which animal?"
+        }
       ]
     }
   ]

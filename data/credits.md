@@ -13,5 +13,14 @@ Crop photos in `app/img/crops/` were chosen by the Chemsha Bongo team from free-
 | Alizeti | alizeti.jpg | | | |
 | Korosho | korosho.jpg | | | |
 | Fenesi | fenesi.jpg | | | |
+| Mpunga | mpunga.jpg | | | |
+| Simba | wanyama/simba.jpg | | | |
+| Twiga | wanyama/twiga.jpg | | | |
+| Pundamilia (also Ngorongoro) | wanyama/pundamilia.jpg, jiografia/ngorongoro.jpg | | | |
+| Kiboko | wanyama/kiboko.jpg | | | |
+| Fisi | wanyama/fisi.jpg | | | |
+| Mamba | wanyama/mamba.jpg | | | |
+| Nyani | wanyama/nyani.jpg | | | |
+| Mlima Meru | jiografia/meru.jpg | | | |
 
-Still using drawings (no photo yet): kahawa, mpunga, karafuu, mkonge.
+Still using drawings (no photo yet): kahawa, karafuu, mkonge.

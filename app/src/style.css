@@ -121,6 +121,7 @@ img.av{object-fit:cover}
 /* scene art */
 .scene{position:relative;border-radius:var(--r-lg);overflow:hidden;background:var(--sky);line-height:0}
 .scene svg{width:100%;height:auto;display:block}
+.scene-photo{width:100%;height:auto;aspect-ratio:16 / 9;object-fit:cover;display:block}
 .scene-label{position:absolute;left:14px;top:12px;line-height:1.2;background:var(--card);border-radius:999px;padding:5px 12px;font-size:12px;font-weight:800;letter-spacing:.08em;text-transform:uppercase}
 .cloud{animation:drift 22s linear infinite}
 .cloud.c2{animation-duration:30s;animation-delay:-9s}
