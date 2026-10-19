@@ -61,7 +61,7 @@ Players pick a level at onboarding and move up as they climb the league.
 ## Repository layout
 
 ```
-data/methali.json     Questions for Malizia Methali (86 across all three levels)
+data/methali.json     Questions for Malizia Methali (86 for all players, plus 16 adult ones marked 18+)
 data/jiografia.json   Seed questions for Unaijua (12 places, 18 questions)
 data/chora.json       Drawing words for Chora Tuone (34 words by level)
 data/mazao.json       Crops for the Mazao game, with where they grow and what they're known for
@@ -110,7 +110,7 @@ Screens in `design/mockups/`: onboarding (Karibu, Kiwango), home, a Methali roun
 
 ## Voices (ElevenLabs)
 
-All voice lines are in `data/sauti.csv` (128 lines):
+All voice lines are in `data/sauti.csv` (144 lines):
 - **Group A**: 22 game phrases ("Sahihi!", "Muda umekwisha!", the Heads Up countdown, win and lose lines). Source: `data/sauti.json`.
 - **Group B**: each methali read aloud, played from a **Sikiliza** button after answering.
 - **Group C**: each crop and animal name said clearly, played from **Sikiliza** after the round.
@@ -123,3 +123,7 @@ To add them:
 The app only plays lines that have a file, so you can add them a few at a time. Players can switch voices off on the Wasifu (profile) screen. Use a paid ElevenLabs plan for anything public: free-plan audio can't be used commercially.
 
 After adding methali, crops or animals, run `python3 app/tools/make_sauti.py` to refresh the CSV.
+
+## 18+ tier
+
+Proverbs with `"adult": true` in `data/methali.json` use crude or adult language. They only appear for players aged 18 or older who switch on **Methali za watu wazima** in their profile. They're off by default, never shown to anyone under 18, and never used as the home screen's Methali ya leo. In a round they carry an **18+** label.

@@ -59,6 +59,7 @@
     S.lastPlay = t; S.bestDays = Math.max(S.bestDays || 0, S.streakDays);
     return true;
   }
+  const adultOn = () => !!(S.profile && S.profile.age >= 18 && S.profile.adult === true);
   function levelName(id) { const l = LEVELS.find(x => x.id === id); return l ? l.name : ''; }
 
   /* ---------- voices (ElevenLabs recordings in app/audio/) ---------- */
@@ -91,8 +92,8 @@
 
   function pick(list, lvl, age, n, practice) {
     const r = practice ? 0 : RANK[S.profile.level] || 0;
-    const a = S.profile.age || 99;
-    const okAge = x => (age(x) || 0) <= a;
+    const a = S.profile.age || 0;
+    const okAge = x => (age(x) || 0) <= a && (!x.adult || adultOn());
     let pool = list.filter(x => okAge(x) && RANK[lvl(x)] <= r && RANK[lvl(x)] >= r - 1);
     if (pool.length < n) pool = list.filter(x => okAge(x) && RANK[lvl(x)] <= Math.max(r, 1));
     if (pool.length < n) pool = list.filter(okAge);
@@ -262,7 +263,7 @@
   function scrHome() {
     const p = S.profile, st = liveStreak();
     const playedToday = S.lastPlay === ymd(new Date());
-    const pool = METHALI.questions.filter(q => (q.min_age || 0) <= p.age);
+    const pool = METHALI.questions.filter(q => (q.min_age || 0) <= p.age && !q.adult);
     const day = Math.floor(Date.now() / 864e5);
     const dq = pool[day % pool.length];
     const nudge = st === 0 ? 'Cheza mchezo mmoja leo uanze mfululizo wa siku!' : playedToday ? `Siku ${st} mfululizo. Safi sana, rudi kesho!` : `Siku ${st} mfululizo. Cheza leo usiivunje!`;
@@ -312,7 +313,7 @@
     let items;
     if (kind === 'methali') {
       items = pick(METHALI.questions, q => q.level, q => q.min_age, practice ? 2 : 5, practice).map(q => ({
-        prompt: q.prompt, answer: q.blank, options: q.options, eyebrow: 'Malizia methali',
+        prompt: q.prompt, answer: q.blank, options: q.options, eyebrow: 'Malizia methali', adult: q.adult,
         after: `<b class="big">${esc(q.text)}</b><span>${esc(q.meaning_sw)}</span><span class="muted">${esc(q.translation_en)} ${esc(q.meaning_en)}</span>${listenBtn('methali_' + q.id)}`
       }));
     } else {
@@ -352,7 +353,7 @@
       ${dotsHTML(G)}
       ${G.practice ? '<span class="tag">Mazoezi · hakuna saa wala pointi</span>' : '<div class="timer" id="timer" aria-hidden="true"><i id="tbar"></i></div>'}
       ${G.kind === 'geo' ? `<div class="scene">${q.photo ? `<img class="scene-photo" src="${esc(q.photo)}" alt="Picha ya mahali" width="720" height="480">` : ART.mountains()}<span class="scene-label">${esc(q.eyebrow)}</span></div>` : ''}
-      <div class="qcard" id="qcard"><span class="eyebrow">${G.kind === 'methali' ? 'Malizia methali' : 'Jiografia'}</span><p class="qtext">${promptHTML}</p></div>
+      <div class="qcard" id="qcard"><span class="eyebrow">${G.kind === 'methali' ? 'Malizia methali' : 'Jiografia'}${q.adult ? ' <span class="tag18">18+</span>' : ''}</span><p class="qtext">${promptHTML}</p></div>
       <div class="opts" id="opts">${opts.map((o, k) => `<button class="opt" style="--i:${k}" data-o="${esc(o)}"><span>${esc(o)}</span></button>`).join('')}</div>
       <div id="qfoot" class="stack"><button class="link" id="hint">Ondoa majibu mawili (−20)</button></div>
     </div>`;
@@ -707,6 +708,8 @@
       <button class="btn ghost block" id="chav">${I.camera} Badilisha avatar au selfie</button>
       <button class="btn ghost block" id="snd" aria-pressed="${S.sound !== false}">${I.speaker} ${S.sound !== false ? 'Sauti: imewashwa' : 'Sauti: imezimwa'}</button>
       ${HAS_AUDIO.size ? '' : '<p class="fine">Sauti za mchezo zinakuja hivi karibuni.</p>'}
+      ${p.age >= 18 ? `<button class="btn ghost block" id="adult" aria-pressed="${p.adult === true}">18+ · ${p.adult === true ? 'Methali za watu wazima: zimewashwa' : 'Methali za watu wazima: zimezimwa'}</button>
+      <p class="fine">Methali zenye lugha ya kiutu-uzima. Zinaonekana kwako tu ukiziwasha.</p>` : ''}
       <div class="stats">
         <div class="stat"><b>${fmt(S.points)}</b><span>Pointi</span></div>
         <div class="stat"><b>${liveStreak()}</b><span>Siku mfululizo</span></div>
@@ -720,6 +723,12 @@
       <div id="danger" class="stack"><button class="link" id="wipe">Futa data yangu na uanze upya</button></div>
     </div>${nav('profile')}`;
     $('#chav').addEventListener('click', () => go(scrAvatar, true));
+    const ab = $('#adult');
+    if (ab) ab.addEventListener('click', () => {
+      S.profile.adult = S.profile.adult !== true; save();
+      ab.setAttribute('aria-pressed', String(S.profile.adult));
+      ab.textContent = `18+ · ${S.profile.adult ? 'Methali za watu wazima: zimewashwa' : 'Methali za watu wazima: zimezimwa'}`;
+    });
     $('#snd').addEventListener('click', () => {
       S.sound = S.sound === false; save();
       const b = $('#snd'); b.setAttribute('aria-pressed', String(S.sound)); b.innerHTML = `${I.speaker} ${S.sound ? 'Sauti: imewashwa' : 'Sauti: imezimwa'}`;

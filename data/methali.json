@@ -7,7 +7,7 @@
     "mjanja",
     "dingi"
   ],
-  "notes": "Each question hides the 'blank' word. 'options' always contains the correct answer first; shuffle in the app. 'min_age' lets onboarding age filter content.",
+  "notes": "Each question hides the 'blank' word. 'options' always contains the correct answer first; shuffle in the app. 'min_age' lets onboarding age filter content. Entries with \"adult\": true (min_age 18) only appear for players aged 18+ who switch on 'Methali za watu wazima' in their profile.",
   "questions": [
     {
       "id": 399,
@@ -1618,17 +1618,326 @@
       "level": "dingi",
       "min_age": 10,
       "theme": "malezi"
+    },
+    {
+      "id": "k32",
+      "source": "team list",
+      "text": "Aninyimaye mbaazi kanipunguzia mashuzi.",
+      "prompt": "Aninyimaye ___ kanipunguzia mashuzi.",
+      "blank": "mbaazi",
+      "options": [
+        "mbaazi",
+        "maharage",
+        "mahindi",
+        "wali"
+      ],
+      "translation_en": "Whoever denies me peas has spared me some wind.",
+      "meaning_sw": "Aliyekunyima kitu huenda amekuepushia shida; usikasirike kwa kunyimwa.",
+      "meaning_en": "Being refused something can be a blessing in disguise.",
+      "level": "mjanja",
+      "min_age": 18,
+      "adult": true,
+      "theme": "maisha"
+    },
+    {
+      "id": "k184",
+      "source": "team list",
+      "text": "Kuchamba kwingi, kuondoka na mavi.",
+      "prompt": "Kuchamba ___, kuondoka na mavi.",
+      "blank": "kwingi",
+      "options": [
+        "kwingi",
+        "kidogo",
+        "haraka",
+        "peke"
+      ],
+      "translation_en": "Wipe too much and you leave with the dirt.",
+      "meaning_sw": "Ukizidisha jambo, mwishowe unaliharibu.",
+      "meaning_en": "Overdoing something ends up spoiling it.",
+      "level": "dingi",
+      "min_age": 18,
+      "adult": true,
+      "theme": "busara"
+    },
+    {
+      "id": "k250",
+      "source": "team list",
+      "text": "Masikini akipata matako hulia mbwata.",
+      "prompt": "Masikini akipata matako hulia ___.",
+      "blank": "mbwata",
+      "options": [
+        "mbwata",
+        "kimya",
+        "polepole",
+        "sana"
+      ],
+      "translation_en": "When a poor man gets a backside, it creaks loudly.",
+      "meaning_sw": "Mtu aliyepata mali ghafla mara nyingi hujionyesha kupita kiasi.",
+      "meaning_en": "The newly rich often show off.",
+      "level": "dingi",
+      "min_age": 18,
+      "adult": true,
+      "theme": "tabia"
+    },
+    {
+      "id": "k254",
+      "source": "team list",
+      "text": "Mavi usiyoyala, wayawingiani kuku?",
+      "prompt": "Mavi usiyoyala, wayawingiani ___?",
+      "blank": "kuku",
+      "options": [
+        "kuku",
+        "mbwa",
+        "paka",
+        "mbuzi"
+      ],
+      "translation_en": "Dung you won't eat, why chase the hens from it?",
+      "meaning_sw": "Usiwanyime wengine kitu ambacho wewe mwenyewe hukihitaji.",
+      "meaning_en": "Don't keep others from what you don't even want.",
+      "level": "dingi",
+      "min_age": 18,
+      "adult": true,
+      "theme": "ukarimu"
+    },
+    {
+      "id": "k255",
+      "source": "team list",
+      "text": "Mavi ya kale hayanuki.",
+      "prompt": "Mavi ya kale ___.",
+      "blank": "hayanuki",
+      "options": [
+        "hayanuki",
+        "hayaoshwi",
+        "hayaonekani",
+        "hayaishi"
+      ],
+      "translation_en": "Old dung doesn't smell.",
+      "meaning_sw": "Mambo ya zamani yamepita; usiyafufue kuleta ugomvi.",
+      "meaning_en": "Let old matters rest; don't dig them up.",
+      "level": "mjanja",
+      "min_age": 18,
+      "adult": true,
+      "theme": "msamaha"
+    },
+    {
+      "id": "k271",
+      "source": "team list",
+      "text": "Mchezea mavi, hayaachi kumnuka.",
+      "prompt": "Mchezea mavi, hayaachi ___.",
+      "blank": "kumnuka",
+      "options": [
+        "kumnuka",
+        "kumpenda",
+        "kumfuata",
+        "kumwacha"
+      ],
+      "translation_en": "Who plays with dung keeps smelling of it.",
+      "meaning_sw": "Ukijihusisha na mambo mabaya, sifa mbaya itakufuata.",
+      "meaning_en": "Mix with bad things and the bad name sticks to you.",
+      "level": "mjanja",
+      "min_age": 18,
+      "adult": true,
+      "theme": "tabia"
+    },
+    {
+      "id": "k282",
+      "source": "team list",
+      "text": "Mficha uchi hazai.",
+      "prompt": "Mficha uchi ___.",
+      "blank": "hazai",
+      "options": [
+        "hazai",
+        "halali",
+        "hali",
+        "haoni"
+      ],
+      "translation_en": "Who hides their nakedness bears no children.",
+      "meaning_sw": "Ukificha tatizo lako, hutapata msaada; liseme ili usaidiwe.",
+      "meaning_en": "Hide your problem and nobody can help you.",
+      "level": "mjanja",
+      "min_age": 18,
+      "adult": true,
+      "theme": "busara"
+    },
+    {
+      "id": "k404",
+      "source": "team list",
+      "text": "Mwenye haja huenda chooni.",
+      "prompt": "Mwenye ___ huenda chooni.",
+      "blank": "haja",
+      "options": [
+        "haja",
+        "njaa",
+        "pesa",
+        "kazi"
+      ],
+      "translation_en": "The one with the need goes to the latrine.",
+      "meaning_sw": "Mwenye shida ndiye anayepaswa kuchukua hatua kuitatua.",
+      "meaning_en": "Whoever has the need must make the move.",
+      "level": "mjanja",
+      "min_age": 18,
+      "adult": true,
+      "theme": "bidii"
+    },
+    {
+      "id": "k453",
+      "source": "team list",
+      "text": "Nguo ya kuazima haisitiri matako.",
+      "prompt": "Nguo ya ___ haisitiri matako.",
+      "blank": "kuazima",
+      "options": [
+        "kuazima",
+        "kununua",
+        "kufua",
+        "kushona"
+      ],
+      "translation_en": "Borrowed clothes don't cover your backside.",
+      "meaning_sw": "Kitu cha kuazima hakikutoshelezi kama chako mwenyewe.",
+      "meaning_en": "Borrowed things never fully serve you.",
+      "level": "mjanja",
+      "min_age": 18,
+      "adult": true,
+      "theme": "akiba"
+    },
+    {
+      "id": "k304",
+      "source": "team list",
+      "text": "Mke ni nguo, mgomba kupalilia.",
+      "prompt": "Mke ni nguo, mgomba ___.",
+      "blank": "kupalilia",
+      "options": [
+        "kupalilia",
+        "kukata",
+        "kuuza",
+        "kupanda"
+      ],
+      "translation_en": "A wife is clothing; a banana plant needs weeding.",
+      "meaning_sw": "Ndoa inahitaji kutunzwa na kuhudumiwa kama shamba.",
+      "meaning_en": "A marriage needs care, like a field needs weeding.",
+      "level": "dingi",
+      "min_age": 18,
+      "adult": true,
+      "theme": "ndoa"
+    },
+    {
+      "id": "k179",
+      "source": "team list",
+      "text": "Kosa moja haliachi mke.",
+      "prompt": "Kosa moja haliachi ___.",
+      "blank": "mke",
+      "options": [
+        "mke",
+        "kazi",
+        "rafiki",
+        "shamba"
+      ],
+      "translation_en": "One mistake doesn't end a marriage.",
+      "meaning_sw": "Usimwache mwenzako kwa kosa moja tu; samehe.",
+      "meaning_en": "Don't end a relationship over a single mistake.",
+      "level": "mjanja",
+      "min_age": 18,
+      "adult": true,
+      "theme": "ndoa"
+    },
+    {
+      "id": "k197",
+      "source": "team list",
+      "text": "Kulea mimba si kazi, kazi kulea mwana.",
+      "prompt": "Kulea mimba si kazi, kazi kulea ___.",
+      "blank": "mwana",
+      "options": [
+        "mwana",
+        "mama",
+        "shamba",
+        "nyumba"
+      ],
+      "translation_en": "Carrying a pregnancy isn't the work; raising the child is.",
+      "meaning_sw": "Kazi kubwa ni malezi ya mtoto baada ya kuzaliwa.",
+      "meaning_en": "The real work is raising the child.",
+      "level": "mjanja",
+      "min_age": 18,
+      "adult": true,
+      "theme": "malezi"
+    },
+    {
+      "id": 403,
+      "source": "Illinois Swahili Proverbs",
+      "text": "Hata mzee anapanda mchikichi.",
+      "prompt": "Hata mzee anapanda ___.",
+      "blank": "mchikichi",
+      "options": [
+        "mchikichi",
+        "mlima",
+        "ngazi",
+        "farasi"
+      ],
+      "translation_en": "Even an old man climbs the palm tree.",
+      "meaning_sw": "Hata wazee hujiona bado wana nguvu za ujana, hasa kwa mambo ya mapenzi.",
+      "meaning_en": "Even the old think they still have youthful vigour, romance included.",
+      "level": "dingi",
+      "min_age": 18,
+      "adult": true,
+      "theme": "mapenzi"
+    },
+    {
+      "id": 424,
+      "source": "Illinois Swahili Proverbs",
+      "text": "Kila tawangu lina kifuniko chake.",
+      "prompt": "Kila tawangu lina ___ chake.",
+      "blank": "kifuniko",
+      "options": [
+        "kifuniko",
+        "ufunguo",
+        "mwenye",
+        "rangi"
+      ],
+      "translation_en": "Every jewellery box has its own lid.",
+      "meaning_sw": "Kila mtu atampata mwenzi anayemfaa.",
+      "meaning_en": "Everyone finds a partner who suits them.",
+      "level": "mjanja",
+      "min_age": 18,
+      "adult": true,
+      "theme": "mapenzi"
+    },
+    {
+      "id": 466,
+      "source": "Illinois Swahili Proverbs",
+      "text": "Pata awezaye kukishua chombo.",
+      "prompt": "Pata awezaye kukishua ___.",
+      "blank": "chombo",
+      "options": [
+        "chombo",
+        "shamba",
+        "mzigo",
+        "jiwe"
+      ],
+      "translation_en": "Find someone who can push the boat into the water.",
+      "meaning_sw": "Chagua mwenzi mwenye uwezo na nguvu ya kukusaidia.",
+      "meaning_en": "Choose a partner who is able and strong.",
+      "level": "dingi",
+      "min_age": 18,
+      "adult": true,
+      "theme": "mapenzi"
+    },
+    {
+      "id": 489,
+      "source": "Illinois Swahili Proverbs",
+      "text": "Ukimwiga tembo kunya utapasuka msamba.",
+      "prompt": "Ukimwiga ___ kunya utapasuka msamba.",
+      "blank": "tembo",
+      "options": [
+        "tembo",
+        "simba",
+        "twiga",
+        "kiboko"
+      ],
+      "translation_en": "Copy the elephant's droppings and you'll split.",
+      "meaning_sw": "Usijaribu kuishi kupita uwezo wako kwa kuwaiga wenye uwezo mkubwa.",
+      "meaning_en": "Don't try to live beyond your means by copying the rich.",
+      "level": "dingi",
+      "min_age": 18,
+      "adult": true,
+      "theme": "busara"
     }
-  ],
-  "excluded_from_source": {
-    "reason": "Adult themes or crude wording; keep out of the general pool until an 18+ content tier exists.",
-    "ids": [
-      403,
-      424,
-      435,
-      466,
-      468,
-      489
-    ]
-  }
+  ]
 }
