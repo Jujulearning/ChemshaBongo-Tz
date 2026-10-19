@@ -61,7 +61,7 @@ Players pick a level at onboarding and move up as they climb the league.
 ## Repository layout
 
 ```
-data/methali.json     Seed questions for Malizia Methali (24 questions across all three levels)
+data/methali.json     Questions for Malizia Methali (86 across all three levels)
 data/jiografia.json   Seed questions for Unaijua (12 places, 18 questions)
 data/chora.json       Drawing words for Chora Tuone (34 words by level)
 data/mazao.json       Crops for the Mazao game, with where they grow and what they're known for
@@ -110,7 +110,7 @@ Screens in `design/mockups/`: onboarding (Karibu, Kiwango), home, a Methali roun
 
 ## Voices (ElevenLabs)
 
-All voice lines are in `data/sauti.csv` (66 lines):
+All voice lines are in `data/sauti.csv` (128 lines):
 - **Group A**: 22 game phrases ("Sahihi!", "Muda umekwisha!", the Heads Up countdown, win and lose lines). Source: `data/sauti.json`.
 - **Group B**: each methali read aloud, played from a **Sikiliza** button after answering.
 - **Group C**: each crop and animal name said clearly, played from **Sikiliza** after the round.
